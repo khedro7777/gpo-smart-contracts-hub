@@ -14,6 +14,7 @@ import HowItWorks from "./pages/HowItWorks";
 // Client routes
 import ClientDashboard from "./pages/dashboard/client/ClientDashboard";
 import ClientGroups from "./pages/dashboard/client/ClientGroups";
+import ClientVoting from "./pages/dashboard/client/ClientVoting";
 
 // Freelancer routes
 import FreelancerDashboard from "./pages/dashboard/freelancer/FreelancerDashboard";
@@ -48,6 +49,7 @@ const App = () => (
             {/* Client Routes */}
             <Route path="/dashboard/client" element={<ClientDashboard />} />
             <Route path="/dashboard/client/groups" element={<ClientGroups />} />
+            <Route path="/dashboard/client/voting" element={<ClientVoting />} />
             
             {/* Freelancer Routes */}
             <Route path="/dashboard/freelancer" element={<FreelancerDashboard />} />

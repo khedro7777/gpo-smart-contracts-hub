@@ -1,15 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import VotingSystem from '@/components/voting/VotingSystem';
+import AddFreelancer from '@/components/freelancers/AddFreelancer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t } from '@/utils/translations';
 
 const ClientGroups = () => {
   const { language } = useLanguage();
+  const [activeTab, setActiveTab] = useState('active');
   
   // Mock data for active groups
   const activeGroups = [
@@ -51,6 +54,25 @@ const ClientGroups = () => {
     },
   ];
   
+  // Mock data for voting
+  const votingOptions = [
+    {
+      id: 1,
+      text: language === 'en' ? 'Accept supplier offer #1 (15,000 USD)' : 'قبول عرض المورد #1 (15,000 دولار)',
+      votes: 8,
+    },
+    {
+      id: 2,
+      text: language === 'en' ? 'Accept supplier offer #2 (17,500 USD)' : 'قبول عرض المورد #2 (17,500 دولار)',
+      votes: 3,
+    },
+    {
+      id: 3,
+      text: language === 'en' ? 'Request more information before deciding' : 'طلب مزيد من المعلومات قبل اتخاذ القرار',
+      votes: 1,
+    },
+  ];
+  
   const getStatusBadge = (status: string) => {
     if (status === 'Active' || status === 'نشط') {
       return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
@@ -67,6 +89,16 @@ const ClientGroups = () => {
     return 'bg-green-500';
   };
   
+  const handleVote = (optionId: number) => {
+    console.log(`Voted for option: ${optionId}`);
+    // Here you would update the vote count in a real application
+  };
+  
+  const handleInviteFreelancer = (freelancerId: number) => {
+    console.log(`Invited freelancer: ${freelancerId}`);
+    // Here you would handle the invitation in a real application
+  };
+  
   return (
     <DashboardLayout role="client">
       <div className="flex flex-col gap-6">
@@ -79,10 +111,12 @@ const ClientGroups = () => {
           </Button>
         </div>
         
-        <Tabs defaultValue="active">
+        <Tabs defaultValue="active" onValueChange={setActiveTab} value={activeTab}>
           <TabsList>
             <TabsTrigger value="active">{t('activeGroups', language)}</TabsTrigger>
             <TabsTrigger value="invitations">{t('invitations', language)}</TabsTrigger>
+            <TabsTrigger value="voting">{t('voteSystem', language)}</TabsTrigger>
+            <TabsTrigger value="freelancers">{t('freelancersList', language)}</TabsTrigger>
             <TabsTrigger value="discover">{t('discover', language)}</TabsTrigger>
           </TabsList>
           
@@ -176,6 +210,47 @@ const ClientGroups = () => {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+          
+          <TabsContent value="voting">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <VotingSystem
+                title={language === 'en' ? 'Vote on Supplier Selection' : 'التصويت على اختيار المورد'}
+                description={language === 'en' ? 'Please vote on the supplier offer for the Office Equipment Purchase' : 'الرجاء التصويت على عرض المورد لشراء معدات المكاتب'}
+                options={votingOptions}
+                totalVotes={12}
+                requiredVotes={10}
+                endDate={language === 'en' ? 'May 20, 2025' : '20 مايو 2025'}
+                isOpen={true}
+                onVote={handleVote}
+              />
+              
+              <VotingSystem
+                title={language === 'en' ? 'Vote on Contract Terms' : 'التصويت على شروط العقد'}
+                options={[
+                  {
+                    id: 1,
+                    text: language === 'en' ? 'Accept terms as presented' : 'قبول الشروط كما هي معروضة',
+                    votes: 5,
+                  },
+                  {
+                    id: 2,
+                    text: language === 'en' ? 'Request modifications to payment terms' : 'طلب تعديلات على شروط الدفع',
+                    votes: 3,
+                  }
+                ]}
+                totalVotes={8}
+                requiredVotes={6}
+                endDate={language === 'en' ? 'May 15, 2025' : '15 مايو 2025'}
+                isOpen={false}
+              />
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="freelancers">
+            <div className="grid grid-cols-1 gap-6">
+              <AddFreelancer onInvite={handleInviteFreelancer} />
+            </div>
           </TabsContent>
           
           <TabsContent value="discover">

@@ -52,10 +52,11 @@ const GPOMachine: React.FC = () => {
     }, 1000);
   };
 
+  // Position in the middle client zone
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
       {isOpen ? (
-        <Card className="w-80 md:w-96 shadow-lg">
+        <Card className="w-80 md:w-96 shadow-xl">
           <CardHeader className="bg-gpo-blue text-white">
             <div className="flex justify-between items-center">
               <CardTitle className="text-lg font-semibold">GPO Machine</CardTitle>

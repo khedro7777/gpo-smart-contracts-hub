@@ -1,671 +1,216 @@
+export const translations = {
+  en: {
+    indexTitle: "Global Purchasing Organization",
+    indexSubtitle: "Empowering businesses through collective purchasing.",
+    roleSelectTitle: "Select Your Role",
+    roleSelectSubtitle: "Choose the role that best describes you to get started.",
+    client: "Client",
+    freelancer: "Freelancer",
+    supplier: "Supplier",
+    aboutUs: "About Us",
+    howItWorks: "How It Works",
+    contactUs: "Contact Us",
+    clientDescription: "Join purchasing groups to leverage collective buying power and reduce costs.",
+    freelancerDescription: "Offer your services to clients within our network and find new opportunities.",
+    supplierDescription: "Connect with clients seeking your products and services and grow your business.",
+    aboutTitle: "About Global Purchasing Organization",
+    aboutSubtitle: "Our mission is to empower businesses through collective purchasing.",
+    aboutContent: "Global Purchasing Organization (GPO) is a platform designed to bring businesses together to leverage collective buying power. By forming purchasing groups, businesses can negotiate better deals with suppliers, reduce costs, and improve their bottom line. Our platform also connects clients with freelancers and suppliers, creating a comprehensive ecosystem for business growth.",
+    howItWorksTitle: "How It Works",
+    howItWorksSubtitle: "Learn how to leverage the power of collective purchasing.",
+    step1Title: "Join a Purchasing Group",
+    step1Description: "Find and join groups of businesses with similar purchasing needs.",
+    step2Title: "Negotiate Collectively",
+    step2Description: "Leverage the group's collective buying power to negotiate better deals with suppliers.",
+    step3Title: "Reduce Costs",
+    step3Description: "Enjoy reduced costs and improved profitability through collective purchasing.",
+    contactTitle: "Contact Us",
+    contactSubtitle: "Get in touch with us to learn more about our services.",
+    contactContent: "If you have any questions or would like to learn more about Global Purchasing Organization, please don't hesitate to contact us. We're here to help you leverage the power of collective purchasing.",
+    name: "Name",
+    email: "Email",
+    message: "Message",
+    send: "Send",
+    dashboard: "Dashboard",
+    groups: "Groups",
+    rfqs: "RFQs",
+    contracts: "Contracts",
+    invoices: "Invoices",
+    account: "Account",
+    notifications: "Notifications",
+    logout: "Logout",
+    myGroups: "My Groups",
+    createNewGroup: "Create New Group",
+    activeGroups: "Active Groups",
+    invitations: "Invitations",
+    discover: "Discover",
+    groupInvitationsDesc: "You have pending invitations to join the following groups.",
+    pendingInvitations: "Pending Invitations",
+    members: "Members",
+    expiresIn: "Expires In",
+    decline: "Decline",
+    accept: "Accept",
+    discoverGroups: "Discover Groups",
+    discoverGroupsDesc: "Find new groups to join and leverage collective purchasing power.",
+    findGroups: "Find Groups",
+    findGroupsDesc: "Search for groups that match your purchasing needs and join them to start saving money.",
+    searchGroups: "Search Groups",
+    progress: "Progress",
+    lastActivity: "Last Activity",
+    viewMembers: "View Members",
+    manageGroup: "Manage Group",
+    activeContracts: "Active Contracts",
+    contractsManagement: "Manage your contracts and track their status.",
+    contract: "Contract",
+    client: "Client",
+    value: "Value",
+    status: "Status",
+    date: "Date",
+    actions: "Actions",
+    view: "View",
+    supplierDashboard: "Supplier Dashboard",
+    supplierGroups: "Supplier Groups",
+    supplierRFQs: "Supplier RFQs",
+    supplierContracts: "Supplier Contracts",
+    supplierInvoices: "Supplier Invoices",
+    supplierAccount: "Supplier Account",
+    supplierNotifications: "Supplier Notifications",
+    myContracts: "My Contracts",
+    gpoPlaceholder: "How can I help you today?",
+    addFreelancerDesc: "Invite freelancers to join your group and contribute to your projects",
+    invite: "Invite",
+    active: "Active",
+    votes: "Votes",
 
-type TranslationsType = {
-  [key: string]: {
-    en: string;
-    ar: string;
-  };
-};
+    // New voting system translations
+    voteSystem: "Voting System",
+    castVote: "Cast Your Vote",
+    votesRequired: "Votes Required",
+    voteResults: "Vote Results",
+    voteEnds: "Voting Ends",
+    voteNow: "Vote Now",
+    votingClosed: "Voting Closed",
+    
+    // Freelancer-related translations
+    addFreelancer: "Add Freelancer",
+    inviteFreelancer: "Invite Freelancer",
+    freelancersList: "Freelancers List",
+    freelancerProfile: "Freelancer Profile",
+    freelancerSkills: "Skills & Expertise",
+    
+    // Group-related additional translations
+    groupMembers: "Group Members",
+    groupFreelancers: "Group Freelancers",
+    groupSuppliers: "Group Suppliers",
+    groupVoting: "Group Voting",
+    activeVotes: "Active Votes",
+    pastVotes: "Past Votes",
+  },
+  ar: {
+    indexTitle: "منظمة الشراء العالمية",
+    indexSubtitle: "تمكين الشركات من خلال الشراء الجماعي.",
+    roleSelectTitle: "اختر دورك",
+    roleSelectSubtitle: "اختر الدور الذي يصفك بشكل أفضل لتبدأ.",
+    client: "عميل",
+    freelancer: "مستقل",
+    supplier: "مورد",
+    aboutUs: "من نحن",
+    howItWorks: "كيف يعمل",
+    contactUs: "اتصل بنا",
+    clientDescription: "انضم إلى مجموعات الشراء للاستفادة من القوة الشرائية الجماعية وتقليل التكاليف.",
+    freelancerDescription: "قدم خدماتك للعملاء داخل شبكتنا وابحث عن فرص جديدة.",
+    supplierDescription: "تواصل مع العملاء الذين يبحثون عن منتجاتك وخدماتك وقم بتنمية أعمالك.",
+    aboutTitle: "حول منظمة الشراء العالمية",
+    aboutSubtitle: "مهمتنا هي تمكين الشركات من خلال الشراء الجماعي.",
+    aboutContent: "منظمة الشراء العالمية (GPO) هي منصة مصممة لجمع الشركات معًا للاستفادة من القوة الشرائية الجماعية. من خلال تشكيل مجموعات شراء، يمكن للشركات التفاوض على صفقات أفضل مع الموردين وتقليل التكاليف وتحسين أرباحها النهائية. تربط منصتنا أيضًا العملاء بالمستقلين والموردين، مما يخلق نظامًا بيئيًا شاملاً لنمو الأعمال.",
+    howItWorksTitle: "كيف يعمل",
+    howItWorksSubtitle: "تعلم كيف تستفيد من قوة الشراء الجماعي.",
+    step1Title: "انضم إلى مجموعة شراء",
+    step1Description: "ابحث عن مجموعات من الشركات ذات الاحتياجات الشرائية المماثلة وانضم إليها.",
+    step2Title: "تفاوض بشكل جماعي",
+    step2Description: "استفد من القوة الشرائية الجماعية للمجموعة للتفاوض على صفقات أفضل مع الموردين.",
+    step3Title: "تقليل التكاليف",
+    step3Description: "استمتع بتكاليف مخفضة وتحسين الربحية من خلال الشراء الجماعي.",
+    contactTitle: "اتصل بنا",
+    contactSubtitle: "تواصل معنا لمعرفة المزيد عن خدماتنا.",
+    contactContent: "إذا كانت لديك أي أسئلة أو ترغب في معرفة المزيد عن منظمة الشراء العالمية، فيرجى عدم التردد في الاتصال بنا. نحن هنا لمساعدتك على الاستفادة من قوة الشراء الجماعي.",
+    name: "الاسم",
+    email: "البريد الإلكتروني",
+    message: "الرسالة",
+    send: "إرسال",
+    dashboard: "لوحة التحكم",
+    groups: "المجموعات",
+    rfqs: "طلبات عروض الأسعار",
+    contracts: "العقود",
+    invoices: "الفواتير",
+    account: "الحساب",
+    notifications: "الإشعارات",
+    logout: "تسجيل الخروج",
+    myGroups: "مجموعاتي",
+    createNewGroup: "إنشاء مجموعة جديدة",
+    activeGroups: "المجموعات النشطة",
+    invitations: "الدعوات",
+    discover: "اكتشف",
+    groupInvitationsDesc: "لديك دعوات معلقة للانضمام إلى المجموعات التالية.",
+    pendingInvitations: "الدعوات المعلقة",
+    members: "الأعضاء",
+    expiresIn: "تنتهي في",
+    decline: "رفض",
+    accept: "قبول",
+    discoverGroups: "اكتشف المجموعات",
+    discoverGroupsDesc: "ابحث عن مجموعات جديدة للانضمام إليها واستفد من القوة الشرائية الجماعية.",
+    findGroups: "البحث عن مجموعات",
+    findGroupsDesc: "ابحث عن مجموعات تطابق احتياجاتك الشرائية وانضم إليها لبدء توفير المال.",
+    searchGroups: "البحث عن مجموعات",
+    progress: "التقدم",
+    lastActivity: "آخر نشاط",
+    viewMembers: "عرض الأعضاء",
+    manageGroup: "إدارة المجموعة",
+    activeContracts: "العقود النشطة",
+    contractsManagement: "إدارة العقود الخاصة بك وتتبع حالتها.",
+    contract: "عقد",
+    client: "عميل",
+    value: "القيمة",
+    status: "الحالة",
+    date: "التاريخ",
+    actions: "الإجراءات",
+    view: "عرض",
+    supplierDashboard: "لوحة تحكم المورد",
+    supplierGroups: "مجموعات الموردين",
+    supplierRFQs: "طلبات عروض أسعار الموردين",
+    supplierContracts: "عقود الموردين",
+    supplierInvoices: "فواتير الموردين",
+    supplierAccount: "حساب المورد",
+    supplierNotifications: "إشعارات المورد",
+    myContracts: "عقودي",
+    gpoPlaceholder: "كيف يمكنني مساعدتك اليوم؟",
+    addFreelancerDesc: "ادعُ المستقلين للانضمام إلى مجموعتك والمساهمة في مشاريعك",
+    invite: "دعوة",
+    active: "نشط",
+    votes: "أصوات",
 
-export const translations: TranslationsType = {
-  // Navigation
-  home: {
-    en: 'Home',
-    ar: 'الرئيسية'
-  },
-  about: {
-    en: 'About Us',
-    ar: 'من نحن'
-  },
-  howItWorks: {
-    en: 'How It Works',
-    ar: 'كيف تعمل المنصة؟'
-  },
-  login: {
-    en: 'Login',
-    ar: 'تسجيل الدخول'
-  },
-  register: {
-    en: 'Register',
-    ar: 'تسجيل'
-  },
-  dashboard: {
-    en: 'Dashboard',
-    ar: 'لوحة التحكم'
-  },
-  
-  // User Roles
-  client: {
-    en: 'Client',
-    ar: 'عميل'
-  },
-  freelancer: {
-    en: 'Freelancer',
-    ar: 'مستقل'
-  },
-  supplier: {
-    en: 'Supplier',
-    ar: 'مورد'
-  },
-  
-  // Service Cards
-  groupBuying: {
-    en: 'Group Buying',
-    ar: 'الشراء التعاوني'
-  },
-  soloContracting: {
-    en: 'Solo Contracting',
-    ar: 'التعاقد الفردي'
-  },
-  suppliers: {
-    en: 'Suppliers',
-    ar: 'الموردين'
-  },
-  arbitration: {
-    en: 'Arbitration (Orda)',
-    ar: 'التحكيم (Orda)'
-  },
-  
-  // Dashboard Sections
-  myAccount: {
-    en: 'My Account',
-    ar: 'حسابي'
-  },
-  myGroups: {
-    en: 'My Groups',
-    ar: 'مجموعاتي'
-  },
-  myContracts: {
-    en: 'My Contracts',
-    ar: 'عقودي'
-  },
-  notifications: {
-    en: 'Notifications',
-    ar: 'الإشعارات'
-  },
-  invoices: {
-    en: 'Invoices',
-    ar: 'الفواتير'
-  },
-  
-  // GPO Machine
-  askGPO: {
-    en: 'Ask GPO Machine',
-    ar: 'اسأل GPO Machine'
-  },
-  gpoPlaceholder: {
-    en: 'Type your question here...',
-    ar: 'اكتب سؤالك هنا...'
-  },
-  send: {
-    en: 'Send',
-    ar: 'إرسال'
-  },
-  
-  // Actions
-  search: {
-    en: 'Search',
-    ar: 'بحث'
-  },
-  create: {
-    en: 'Create',
-    ar: 'إنشاء'
-  },
-  join: {
-    en: 'Join',
-    ar: 'انضمام'
-  },
-  
-  // Welcome
-  welcome: {
-    en: 'Welcome to GPO',
-    ar: 'مرحبًا بك في GPO'
-  },
-  tagline: {
-    en: 'Smart Contracts & Negotiation Platform',
-    ar: 'منصة التفاوض والعقود الذكية'
-  },
-  getStarted: {
-    en: 'Get Started',
-    ar: 'ابدأ الآن'
-  },
-  
-  // Role Selection
-  selectRole: {
-    en: 'Select Your Role',
-    ar: 'اختر دورك'
-  },
-  continueAs: {
-    en: 'Continue as',
-    ar: 'المتابعة كـ'
-  },
-  
-  // Language
-  language: {
-    en: 'العربية',
-    ar: 'English'
-  },
-
-  // Workflows
-  verification: {
-    en: 'Verification',
-    ar: 'التحقق'
-  },
-  registration: {
-    en: 'Registration',
-    ar: 'التسجيل'
-  },
-  verificationInvoice: {
-    en: 'Verification Invoice',
-    ar: 'فاتورة التحقق'
-  },
-  adminPanel: {
-    en: 'Admin Panel Tasks',
-    ar: 'مهام لوحة الإدارة'
-  },
-  serviceSelection: {
-    en: 'Service Selection',
-    ar: 'اختيار الخدمة'
-  },
-  contract: {
-    en: 'Contract',
-    ar: 'العقد'
-  },
-  groupBuyingWorkflow: {
-    en: 'Group Buying Workflow',
-    ar: 'سير عمل الشراء الجماعي'
-  },
-  
-  // Supplier Groups Page
-  activeGroups: {
-    en: 'Active Groups',
-    ar: 'المجموعات النشطة'
-  },
-  groupsSupplying: {
-    en: 'Groups you are currently supplying to',
-    ar: 'المجموعات التي تقوم بتوريدها حاليًا'
-  },
-  groupName: {
-    en: 'Group Name',
-    ar: 'اسم المجموعة'
-  },
-  members: {
-    en: 'Members',
-    ar: 'الأعضاء'
-  },
-  status: {
-    en: 'Status',
-    ar: 'الحالة'
-  },
-  lastActivity: {
-    en: 'Last Activity',
-    ar: 'آخر نشاط'
-  },
-  groupRFQs: {
-    en: 'Group RFQs',
-    ar: 'طلبات العروض للمجموعات'
-  },
-  recentRFQs: {
-    en: 'Recent requests for quotation from groups',
-    ar: 'طلبات العروض الأخيرة من المجموعات'
-  },
-  pendingResponse: {
-    en: 'Pending Response',
-    ar: 'في انتظار الرد'
-  },
-  responded: {
-    en: 'Responded',
-    ar: 'تم الرد'
-  },
-  underReview: {
-    en: 'Under Review',
-    ar: 'قيد المراجعة'
-  },
-  
-  // RFQs Page
-  rfqs: {
-    en: 'RFQs',
-    ar: 'طلبات عروض الأسعار'
-  },
-  pendingRFQs: {
-    en: 'Pending RFQs',
-    ar: 'طلبات العروض المعلقة'
-  },
-  respondedRFQs: {
-    en: 'Responded RFQs',
-    ar: 'طلبات العروض المردودة'
-  },
-  rfqsNeedingResponse: {
-    en: 'RFQs that need your response',
-    ar: 'طلبات العروض التي تحتاج إلى ردك'
-  },
-  rfqsYouResponded: {
-    en: 'RFQs you have responded to',
-    ar: 'طلبات العروض التي رددت عليها'
-  },
-  view: {
-    en: 'View',
-    ar: 'عرض'
-  },
-  respond: {
-    en: 'Respond',
-    ar: 'الرد'
-  },
-  viewDetails: {
-    en: 'View Details',
-    ar: 'عرض التفاصيل'
-  },
-  
-  // Contracts Page
-  activeContracts: {
-    en: 'Active Contracts',
-    ar: 'العقود النشطة'
-  },
-  contractsManagement: {
-    en: 'Manage your contracts with clients',
-    ar: 'إدارة عقودك مع العملاء'
-  },
-  client: {
-    en: 'Client',
-    ar: 'العميل'
-  },
-  value: {
-    en: 'Value',
-    ar: 'القيمة'
-  },
-  date: {
-    en: 'Date',
-    ar: 'التاريخ'
-  },
-  actions: {
-    en: 'Actions',
-    ar: 'الإجراءات'
-  },
-  
-  // Invoices Page
-  recentInvoices: {
-    en: 'Recent Invoices',
-    ar: 'الفواتير الأخيرة'
-  },
-  invoiceManagement: {
-    en: 'Manage your invoices and payments',
-    ar: 'إدارة الفواتير والمدفوعات الخاصة بك'
-  },
-  createInvoice: {
-    en: 'Create Invoice',
-    ar: 'إنشاء فاتورة'
-  },
-  invoiceId: {
-    en: 'Invoice ID',
-    ar: 'رقم الفاتورة'
-  },
-  title: {
-    en: 'Title',
-    ar: 'العنوان'
-  },
-  amount: {
-    en: 'Amount',
-    ar: 'المبلغ'
-  },
-  download: {
-    en: 'Download',
-    ar: 'تنزيل'
-  },
-  
-  // Account Page
-  profile: {
-    en: 'Profile',
-    ar: 'الملف الشخصي'
-  },
-  companyInfo: {
-    en: 'Company Info',
-    ar: 'معلومات الشركة'
-  },
-  payment: {
-    en: 'Payment',
-    ar: 'الدفع'
-  },
-  personalInformation: {
-    en: 'Personal Information',
-    ar: 'المعلومات الشخصية'
-  },
-  managePersonalInfo: {
-    en: 'Manage your personal information',
-    ar: 'إدارة معلوماتك الشخصية'
-  },
-  fullName: {
-    en: 'Full Name',
-    ar: 'الاسم الكامل'
-  },
-  email: {
-    en: 'Email',
-    ar: 'البريد الإلكتروني'
-  },
-  phone: {
-    en: 'Phone',
-    ar: 'الهاتف'
-  },
-  position: {
-    en: 'Position',
-    ar: 'المنصب'
-  },
-  save: {
-    en: 'Save',
-    ar: 'حفظ'
-  },
-  security: {
-    en: 'Security',
-    ar: 'الأمان'
-  },
-  managePassword: {
-    en: 'Manage your password',
-    ar: 'إدارة كلمة المرور الخاصة بك'
-  },
-  currentPassword: {
-    en: 'Current Password',
-    ar: 'كلمة المرور الحالية'
-  },
-  newPassword: {
-    en: 'New Password',
-    ar: 'كلمة المرور الجديدة'
-  },
-  confirmPassword: {
-    en: 'Confirm Password',
-    ar: 'تأكيد كلمة المرور'
-  },
-  updatePassword: {
-    en: 'Update Password',
-    ar: 'تحديث كلمة المرور'
-  },
-  companyInformation: {
-    en: 'Company Information',
-    ar: 'معلومات الشركة'
-  },
-  manageCompanyInfo: {
-    en: 'Manage your company information',
-    ar: 'إدارة معلومات شركتك'
-  },
-  companyName: {
-    en: 'Company Name',
-    ar: 'اسم الشركة'
-  },
-  taxId: {
-    en: 'Tax ID',
-    ar: 'الرقم الضريبي'
-  },
-  address: {
-    en: 'Address',
-    ar: 'العنوان'
-  },
-  website: {
-    en: 'Website',
-    ar: 'الموقع الإلكتروني'
-  },
-  businessDocuments: {
-    en: 'Business Documents',
-    ar: 'وثائق الأعمال'
-  },
-  uploadDocuments: {
-    en: 'Upload your business documents',
-    ar: 'تحميل وثائق عملك'
-  },
-  commercialRegister: {
-    en: 'Commercial Register',
-    ar: 'السجل التجاري'
-  },
-  taxCertificate: {
-    en: 'Tax Certificate',
-    ar: 'الشهادة الضريبية'
-  },
-  upload: {
-    en: 'Upload',
-    ar: 'تحميل'
-  },
-  saveDocuments: {
-    en: 'Save Documents',
-    ar: 'حفظ المستندات'
-  },
-  verificationStatus: {
-    en: 'Verification Status',
-    ar: 'حالة التحقق'
-  },
-  verificationDesc: {
-    en: 'Check your verification status',
-    ar: 'تحقق من حالة التحقق الخاصة بك'
-  },
-  emailVerification: {
-    en: 'Email Verification',
-    ar: 'التحقق من البريد الإلكتروني'
-  },
-  phoneVerification: {
-    en: 'Phone Verification',
-    ar: 'التحقق من الهاتف'
-  },
-  businessVerification: {
-    en: 'Business Verification',
-    ar: 'التحقق من الأعمال'
-  },
-  kycVerification: {
-    en: 'KYC Verification',
-    ar: 'التحقق من هوية العميل'
-  },
-  verified: {
-    en: 'Verified',
-    ar: 'تم التحقق'
-  },
-  pending: {
-    en: 'Pending',
-    ar: 'قيد الانتظار'
-  },
-  notStarted: {
-    en: 'Not Started',
-    ar: 'لم يبدأ بعد'
-  },
-  start: {
-    en: 'Start',
-    ar: 'بدء'
-  },
-  paymentMethods: {
-    en: 'Payment Methods',
-    ar: 'طرق الدفع'
-  },
-  managePaymentMethods: {
-    en: 'Manage your payment methods',
-    ar: 'إدارة طرق الدفع الخاصة بك'
-  },
-  bankTransfer: {
-    en: 'Bank Transfer',
-    ar: 'تحويل بنكي'
-  },
-  primary: {
-    en: 'Primary',
-    ar: 'أساسي'
-  },
-  setAsPrimary: {
-    en: 'Set as Primary',
-    ar: 'تعيين كأساسي'
-  },
-  addPaymentMethod: {
-    en: 'Add Payment Method',
-    ar: 'إضافة طريقة دفع'
-  },
-  
-  // Notifications Page
-  unread: {
-    en: 'Unread',
-    ar: 'غير مقروءة'
-  },
-  all: {
-    en: 'All',
-    ar: 'الكل'
-  },
-  markAllAsRead: {
-    en: 'Mark All as Read',
-    ar: 'تحديد الكل كمقروء'
-  },
-  unreadNotifications: {
-    en: 'Unread Notifications',
-    ar: 'الإشعارات غير المقروءة'
-  },
-  unreadNotificationsDesc: {
-    en: 'Your unread notifications',
-    ar: 'إشعاراتك غير المقروءة'
-  },
-  allNotifications: {
-    en: 'All Notifications',
-    ar: 'جميع الإشعارات'
-  },
-  allNotificationsDesc: {
-    en: 'View all your notifications',
-    ar: 'عرض جميع إشعاراتك'
-  },
-  markAsRead: {
-    en: 'Mark as Read',
-    ar: 'تحديد كمقروء'
-  },
-  notificationSettings: {
-    en: 'Notification Settings',
-    ar: 'إعدادات الإشعارات'
-  },
-  notificationSettingsDesc: {
-    en: 'Manage your notification preferences',
-    ar: 'إدارة تفضيلات الإشعارات الخاصة بك'
-  },
-  emailNotifications: {
-    en: 'Email Notifications',
-    ar: 'إشعارات البريد الإلكتروني'
-  },
-  receiveEmailNotifications: {
-    en: 'Receive notifications via email',
-    ar: 'تلقي الإشعارات عبر البريد الإلكتروني'
-  },
-  pushNotifications: {
-    en: 'Push Notifications',
-    ar: 'الإشعارات المنبثقة'
-  },
-  receivePushNotifications: {
-    en: 'Receive push notifications',
-    ar: 'تلقي الإشعارات المنبثقة'
-  },
-  configure: {
-    en: 'Configure',
-    ar: 'تكوين'
-  },
-  
-  // Freelancer Projects Page
-  myProjects: {
-    en: 'My Projects',
-    ar: 'مشاريعي'
-  },
-  findProjects: {
-    en: 'Find Projects',
-    ar: 'البحث عن مشاريع'
-  },
-  activeProjects: {
-    en: 'Active Projects',
-    ar: 'المشاريع النشطة'
-  },
-  completedProjects: {
-    en: 'Completed Projects',
-    ar: 'المشاريع المكتملة'
-  },
-  opportunities: {
-    en: 'Opportunities',
-    ar: 'الفرص'
-  },
-  currentProjectsDesc: {
-    en: 'Projects you are currently working on',
-    ar: 'المشاريع التي تعمل عليها حاليًا'
-  },
-  completedProjectsDesc: {
-    en: 'Projects you have completed',
-    ar: 'المشاريع التي أكملتها'
-  },
-  opportunitiesDesc: {
-    en: 'Available projects that match your skills',
-    ar: 'المشاريع المتاحة التي تتناسب مع مهاراتك'
-  },
-  updateProgress: {
-    en: 'Update Progress',
-    ar: 'تحديث التقدم'
-  },
-  applyNow: {
-    en: 'Apply Now',
-    ar: 'تقديم طلب الآن'
-  },
-  
-  // Client Groups Page
-  createNewGroup: {
-    en: 'Create New Group',
-    ar: 'إنشاء مجموعة جديدة'
-  },
-  invitations: {
-    en: 'Invitations',
-    ar: 'الدعوات'
-  },
-  discover: {
-    en: 'Discover',
-    ar: 'استكشاف'
-  },
-  progress: {
-    en: 'Progress',
-    ar: 'التقدم'
-  },
-  viewMembers: {
-    en: 'View Members',
-    ar: 'عرض الأعضاء'
-  },
-  manageGroup: {
-    en: 'Manage Group',
-    ar: 'إدارة المجموعة'
-  },
-  pendingInvitations: {
-    en: 'Pending Invitations',
-    ar: 'الدعوات المعلقة'
-  },
-  groupInvitationsDesc: {
-    en: 'Groups you have been invited to',
-    ar: 'المجموعات التي تمت دعوتك إليها'
-  },
-  decline: {
-    en: 'Decline',
-    ar: 'رفض'
-  },
-  accept: {
-    en: 'Accept',
-    ar: 'قبول'
-  },
-  discoverGroups: {
-    en: 'Discover Groups',
-    ar: 'استكشاف المجموعات'
-  },
-  discoverGroupsDesc: {
-    en: 'Find groups to join',
-    ar: 'البحث عن مجموعات للانضمام إليها'
-  },
-  findGroups: {
-    en: 'Find Groups',
-    ar: 'البحث عن مجموعات'
-  },
-  findGroupsDesc: {
-    en: 'Search for groups based on your needs and interests',
-    ar: 'ابحث عن مجموعات بناءً على احتياجاتك واهتماماتك'
-  },
-  searchGroups: {
-    en: 'Search Groups',
-    ar: 'البحث عن مجموعات'
-  },
-  
-  // Additional Terms
-  manageRFQs: {
-    en: 'Manage RFQs',
-    ar: 'إدارة طلبات عروض الأسعار'
-  },
-  rfq: {
-    en: 'RFQ',
-    ar: 'طلب عرض سعر'
+    // New voting system translations
+    voteSystem: "نظام التصويت",
+    castVote: "أدلِ بصوتك",
+    votesRequired: "الأصوات المطلوبة",
+    voteResults: "نتائج التصويت",
+    voteEnds: "ينتهي التصويت",
+    voteNow: "صوّت الآن",
+    votingClosed: "التصويت مغلق",
+    
+    // Freelancer-related translations
+    addFreelancer: "إضافة مستقل",
+    inviteFreelancer: "دعوة مستقل",
+    freelancersList: "قائمة المستقلين",
+    freelancerProfile: "ملف المستقل",
+    freelancerSkills: "المهارات والخبرات",
+    
+    // Group-related additional translations
+    groupMembers: "أعضاء المجموعة",
+    groupFreelancers: "مستقلو المجموعة",
+    groupSuppliers: "موردو المجموعة",
+    groupVoting: "تصويت المجموعة",
+    activeVotes: "التصويتات النشطة",
+    pastVotes: "التصويتات السابقة",
   }
-};
-
-export const t = (key: string, language: 'en' | 'ar'): string => {
-  return translations[key]?.[language] || key;
 };
