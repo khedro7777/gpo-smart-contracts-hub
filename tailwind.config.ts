@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                gpo: {
+                    blue: '#0056b3',
+                    lightBlue: '#e6f0ff',
+                    darkBlue: '#003366',
+                    accent: '#00a3e0',
+                    success: '#28a745',
+                    warning: '#ffc107',
+                    danger: '#dc3545',
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,13 +94,25 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'fade-in': {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'fade-in': 'fade-in 0.5s ease-out'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+        require("tailwindcss-animate"),
+        require("@tailwindcss/typography"),
+        function({ addVariant }) {
+            addVariant('rtl', '[dir="rtl"] &');
+            addVariant('ltr', '[dir="ltr"] &');
+        }
+    ],
 } satisfies Config;
