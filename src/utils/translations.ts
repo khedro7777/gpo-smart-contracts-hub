@@ -174,6 +174,52 @@ export const translations: TranslationsType = {
     en: 'Group Buying Workflow',
     ar: 'سير عمل الشراء الجماعي'
   },
+  
+  // Supplier Groups Page
+  activeGroups: {
+    en: 'Active Groups',
+    ar: 'المجموعات النشطة'
+  },
+  groupsSupplying: {
+    en: 'Groups you are currently supplying to',
+    ar: 'المجموعات التي تقوم بتوريدها حاليًا'
+  },
+  groupName: {
+    en: 'Group Name',
+    ar: 'اسم المجموعة'
+  },
+  members: {
+    en: 'Members',
+    ar: 'الأعضاء'
+  },
+  status: {
+    en: 'Status',
+    ar: 'الحالة'
+  },
+  lastActivity: {
+    en: 'Last Activity',
+    ar: 'آخر نشاط'
+  },
+  groupRFQs: {
+    en: 'Group RFQs',
+    ar: 'طلبات العروض للمجموعات'
+  },
+  recentRFQs: {
+    en: 'Recent requests for quotation from groups',
+    ar: 'طلبات العروض الأخيرة من المجموعات'
+  },
+  pendingResponse: {
+    en: 'Pending Response',
+    ar: 'في انتظار الرد'
+  },
+  responded: {
+    en: 'Responded',
+    ar: 'تم الرد'
+  },
+  underReview: {
+    en: 'Under Review',
+    ar: 'قيد المراجعة'
+  }
 };
 
 export const t = (key: string, language: 'en' | 'ar'): string => {
