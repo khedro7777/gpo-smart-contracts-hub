@@ -51,6 +51,20 @@ export const groupsTranslations = {
     supplierOffers: "Supplier Offers",
     freelancerRequests: "Freelancer Requests",
     
+    // Additional translations
+    discoverGroups: "Discover Groups",
+    discoverGroupsDesc: "Find and join existing groups",
+    findGroups: "Find Groups",
+    findGroupsDesc: "Search for groups that match your interests",
+    searchGroups: "Search Groups",
+    pendingInvitations: "Pending Invitations",
+    groupInvitationsDesc: "Review your group invitations",
+    decline: "Decline",
+    accept: "Accept",
+    progress: "Progress",
+    lastActivity: "Last Activity",
+    viewMembers: "View Members",
+    
     // Notifications
     groupCreated: "Group created successfully. It will be reviewed within 24 hours.",
     groupApproved: "Your group has been approved and is now active.",
@@ -108,6 +122,20 @@ export const groupsTranslations = {
     voting: "التصويت",
     supplierOffers: "عروض الموردين",
     freelancerRequests: "طلبات المستقلين",
+    
+    // Additional translations
+    discoverGroups: "اكتشف المجموعات",
+    discoverGroupsDesc: "ابحث وانضم إلى المجموعات الموجودة",
+    findGroups: "البحث عن المجموعات",
+    findGroupsDesc: "ابحث عن مجموعات تتناسب مع اهتماماتك",
+    searchGroups: "البحث في المجموعات",
+    pendingInvitations: "الدعوات المعلقة",
+    groupInvitationsDesc: "راجع دعوات المجموعات الخاصة بك",
+    decline: "رفض",
+    accept: "قبول",
+    progress: "التقدم",
+    lastActivity: "آخر نشاط",
+    viewMembers: "عرض الأعضاء",
     
     // Notifications
     groupCreated: "تم إنشاء المجموعة بنجاح. سيتم مراجعتها خلال 24 ساعة.",
