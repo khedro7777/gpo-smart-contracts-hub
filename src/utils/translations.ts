@@ -128,6 +128,33 @@ export const translations = {
     serviceSelection: "Service Selection",
     groupBuyingWorkflow: "Group Buying Workflow",
     selectRole: "Select Your Role",
+
+    // FreelancerProjects page translations
+    myProjects: "My Projects",
+    findProjects: "Find Projects",
+    activeProjects: "Active Projects",
+    completedProjects: "Completed Projects",
+    opportunities: "Opportunities",
+    currentProjectsDesc: "Track your ongoing projects and their progress.",
+    completedProjectsDesc: "View your completed projects and client feedback.",
+    opportunitiesDesc: "Discover new project opportunities in your field.",
+    viewDetails: "View Details",
+    updateProgress: "Update Progress",
+    applyNow: "Apply Now",
+
+    // SupplierInvoices page translations
+    createInvoice: "Create Invoice",
+    recentInvoices: "Recent Invoices",
+    invoiceManagement: "Manage your invoices and track their payment status.",
+    invoiceId: "Invoice ID",
+    title: "Title",
+    amount: "Amount",
+    download: "Download",
+
+    // Additional missing keys
+    ourServices: "Our Services",
+    standardWorkflow: "Standard Workflow",
+    howItWorksPage: "How It Works",
   },
   ar: {
     indexTitle: "منظمة الشراء العالمية",
@@ -257,6 +284,33 @@ export const translations = {
     serviceSelection: "اختيار الخدمة",
     groupBuyingWorkflow: "سير عمل الشراء الجماعي",
     selectRole: "اختر دورك",
+
+    // FreelancerProjects page translations
+    myProjects: "مشاريعي",
+    findProjects: "البحث عن مشاريع",
+    activeProjects: "المشاريع النشطة",
+    completedProjects: "المشاريع المكتملة",
+    opportunities: "الفرص",
+    currentProjectsDesc: "تتبع مشاريعك الجارية وتقدمها.",
+    completedProjectsDesc: "عرض مشاريعك المكتملة وتقييمات العملاء.",
+    opportunitiesDesc: "اكتشف فرص مشاريع جديدة في مجالك.",
+    viewDetails: "عرض التفاصيل",
+    updateProgress: "تحديث التقدم",
+    applyNow: "تقدم الآن",
+
+    // SupplierInvoices page translations
+    createInvoice: "إنشاء فاتورة",
+    recentInvoices: "الفواتير الحديثة",
+    invoiceManagement: "إدارة فواتيرك وتتبع حالة الدفع.",
+    invoiceId: "رقم الفاتورة",
+    title: "العنوان",
+    amount: "المبلغ",
+    download: "تحميل",
+
+    // Additional missing keys
+    ourServices: "خدماتنا",
+    standardWorkflow: "سير العمل القياسي",
+    howItWorksPage: "كيف تعمل المنصة؟",
   }
 };
 
