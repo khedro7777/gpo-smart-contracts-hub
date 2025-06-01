@@ -1,4 +1,3 @@
-
 export const translations = {
   en: {
     indexTitle: "Global Purchasing Organization",
@@ -155,6 +154,32 @@ export const translations = {
     ourServices: "Our Services",
     standardWorkflow: "Standard Workflow",
     howItWorksPage: "How It Works",
+
+    // SupplierNotifications translations
+    markAllAsRead: "Mark All as Read",
+    unread: "Unread",
+    all: "All",
+    unreadNotifications: "Unread Notifications",
+    unreadNotificationsDesc: "View and manage your unread notifications.",
+    markAsRead: "Mark as Read",
+    allNotifications: "All Notifications",
+    allNotificationsDesc: "View all your notifications including read and unread.",
+    notificationSettings: "Notification Settings",
+    notificationSettingsDesc: "Configure your notification preferences.",
+    emailNotifications: "Email Notifications",
+    receiveEmailNotifications: "Receive email notifications",
+    configure: "Configure",
+    pushNotifications: "Push Notifications",
+    receivePushNotifications: "Receive push notifications",
+
+    // SupplierRFQs translations
+    pendingRFQs: "Pending RFQs",
+    respondedRFQs: "Responded RFQs",
+    pendingResponse: "Pending Response",
+    rfqsNeedingResponse: "RFQs that need your response",
+    respond: "Respond",
+    responded: "Responded",
+    rfqsYouResponded: "RFQs you have responded to"
   },
   ar: {
     indexTitle: "منظمة الشراء العالمية",
@@ -311,6 +336,32 @@ export const translations = {
     ourServices: "خدماتنا",
     standardWorkflow: "سير العمل القياسي",
     howItWorksPage: "كيف تعمل المنصة؟",
+
+    // SupplierNotifications translations
+    markAllAsRead: "تعيين الكل كمقروء",
+    unread: "غير مقروء",
+    all: "الكل",
+    unreadNotifications: "الإشعارات غير المقروءة",
+    unreadNotificationsDesc: "عرض وإدارة الإشعارات غير المقروءة.",
+    markAsRead: "تعيين كمقروء",
+    allNotifications: "جميع الإشعارات",
+    allNotificationsDesc: "عرض جميع الإشعارات بما في ذلك المقروءة وغير المقروءة.",
+    notificationSettings: "إعدادات الإشعارات",
+    notificationSettingsDesc: "تكوين تفضيلات الإشعارات الخاصة بك.",
+    emailNotifications: "إشعارات البريد الإلكتروني",
+    receiveEmailNotifications: "تلقي إشعارات البريد الإلكتروني",
+    configure: "تكوين",
+    pushNotifications: "الإشعارات المنبثقة",
+    receivePushNotifications: "تلقي الإشعارات المنبثقة",
+
+    // SupplierRFQs translations
+    pendingRFQs: "طلبات العروض المعلقة",
+    respondedRFQs: "طلبات العروض المردود عليها",
+    pendingResponse: "في انتظار الرد",
+    rfqsNeedingResponse: "طلبات العروض التي تحتاج ردك",
+    respond: "رد",
+    responded: "تم الرد",
+    rfqsYouResponded: "طلبات العروض التي ردت عليها"
   }
 };
 
