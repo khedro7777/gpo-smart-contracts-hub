@@ -1,4 +1,5 @@
 
+
 export const groupsTranslations = {
   en: {
     // Group creation
@@ -47,11 +48,10 @@ export const groupsTranslations = {
     groupRoom: "Group Room",
     overview: "Overview",
     members: "Members",
-    voting: "Voting",
     supplierOffers: "Supplier Offers",
     freelancerRequests: "Freelancer Requests",
     
-    // Additional translations
+    // Group discovery and interactions
     discoverGroups: "Discover Groups",
     discoverGroupsDesc: "Find and join existing groups",
     findGroups: "Find Groups",
@@ -119,11 +119,10 @@ export const groupsTranslations = {
     groupRoom: "غرفة المجموعة",
     overview: "نظرة عامة",
     members: "الأعضاء",
-    voting: "التصويت",
     supplierOffers: "عروض الموردين",
     freelancerRequests: "طلبات المستقلين",
     
-    // Additional translations
+    // Group discovery and interactions
     discoverGroups: "اكتشف المجموعات",
     discoverGroupsDesc: "ابحث وانضم إلى المجموعات الموجودة",
     findGroups: "البحث عن المجموعات",
@@ -145,3 +144,4 @@ export const groupsTranslations = {
     offerReceived: "تم استلام عرض جديد لمجموعتك.",
   }
 };
+
