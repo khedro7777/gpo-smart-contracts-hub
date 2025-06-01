@@ -28,7 +28,7 @@ const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({ title, steps }) => {
           {steps.map((step, index) => (
             <React.Fragment key={step.id}>
               <div className="bg-white border-2 border-gpo-blue rounded-lg p-4 w-60 text-center mb-2">
-                {t(step.id, language)}
+                {step.label}
               </div>
               
               {index < steps.length - 1 && (

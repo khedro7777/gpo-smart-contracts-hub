@@ -96,7 +96,7 @@ const Index = () => {
               <ServiceCard
                 key={service.id}
                 id={service.id}
-                title={t(service.id, language)}
+                title={service.title}
                 description={service.description}
                 icon={service.icon}
                 action={service.action}
