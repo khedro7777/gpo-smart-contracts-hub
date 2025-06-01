@@ -10,9 +10,18 @@ export const homepageTranslations = {
     
     // Services
     groupBuying: "Group Buying",
+    cooperativeMarketing: "Cooperative Marketing",
     soloContracting: "Solo Contracting", 
     suppliers: "Suppliers",
+    freelancers: "Freelancers",
     arbitration: "Arbitration",
+    
+    // Service descriptions
+    groupBuyingDesc: "Join forces with others for better deals and shared benefits.",
+    cooperativeMarketingDesc: "Collaborate with others to create smart marketing campaigns.",
+    freelancersDesc: "Showcase your skills or participate in collaborative tasks.",
+    suppliersDesc: "Find quality suppliers or offer your products and services.",
+    arbitrationDesc: "Resolve disputes with our fair and transparent system.",
     
     // Workflow steps
     verification: "Verification",
@@ -23,27 +32,63 @@ export const homepageTranslations = {
     contract: "Contract",
     groupBuyingWorkflow: "Group Buying Workflow",
     
+    // New sections
+    ourServices: "Our Services",
+    howItWorks: "How It Works",
+    standardWorkflow: "Standard Workflow",
+    openOffers: "Open Offers",
+    searchFilters: "Search & Filters",
+    selectGateway: "Select Gateway",
+    filterByCountry: "Filter by Country",
+    filterBySector: "Filter by Sector",
+    filterByStatus: "Filter by Status",
+    
     // How it works page
     howItWorksPage: "How It Works",
     
     // About page
     aboutUs: "About Us",
-    howItWorks: "How It Works",
     contactUs: "Contact Us",
+    supportHelp: "Support & Help",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    siteMap: "Site Map",
+    
+    // Country and currency
+    selectCountry: "Select Country",
+    selectCurrency: "Select Currency",
+    selectLanguage: "Select Language",
+    
+    // Footer
+    ourMission: "Our Mission",
+    ourPhilosophy: "Our Philosophy",
+    departmentManagers: "Department Managers",
+    chatBot: "Chat Bot",
+    tickets: "Tickets",
+    quickSupport: "Quick Support",
   },
   ar: {
     // Homepage content
     indexTitle: "مرحباً بك في منصة GPO",
     indexSubtitle: "بوابتك للمشتريات التعاونية",
     welcome: "مرحباً بك في منصة GPO",
-    tagline: "ثورة في الشراء الجماعي والمشتريات التعاونية",
+    tagline: "منصة التعاقد الذكي بين المشترين والموردين والمستقلين",
     getStarted: "ابدأ الآن",
     
     // Services
-    groupBuying: "الشراء الجماعي",
+    groupBuying: "الشراء التعاوني",
+    cooperativeMarketing: "التسويق التعاوني",
     soloContracting: "التعاقد الفردي",
     suppliers: "الموردون", 
+    freelancers: "المستقلون",
     arbitration: "التحكيم",
+    
+    // Service descriptions
+    groupBuyingDesc: "انضم إلى مجموعة لشراء منتجات أو خدمات بكميات أفضل.",
+    cooperativeMarketingDesc: "تعاون مع آخرين لإنشاء حملات تسويقية ذكية.",
+    freelancersDesc: "اعرض مهاراتك أو شارك في مهام تعاونية.",
+    suppliersDesc: "قدم عروضك للمجموعات الجاهزة للتفاوض.",
+    arbitrationDesc: "حل النزاعات من خلال نظامنا العادل والشفاف.",
     
     // Workflow steps
     verification: "التحقق",
@@ -54,12 +99,39 @@ export const homepageTranslations = {
     contract: "العقد",
     groupBuyingWorkflow: "سير عمل الشراء الجماعي",
     
+    // New sections
+    ourServices: "خدماتنا",
+    howItWorks: "كيف تعمل المنصة؟",
+    standardWorkflow: "سير العمل القياسي",
+    openOffers: "العروض المفتوحة",
+    searchFilters: "البحث والفلاتر",
+    selectGateway: "اختيار البوابة",
+    filterByCountry: "التصفية حسب البلد",
+    filterBySector: "التصفية حسب القطاع",
+    filterByStatus: "التصفية حسب الحالة",
+    
     // How it works page
     howItWorksPage: "كيف تعمل المنصة",
     
     // About page
     aboutUs: "من نحن",
-    howItWorks: "كيف تعمل المنصة",
     contactUs: "اتصل بنا",
+    supportHelp: "الدعم والمساعدة",
+    privacyPolicy: "سياسة الخصوصية",
+    termsOfService: "شروط الاستخدام",
+    siteMap: "خريطة الموقع",
+    
+    // Country and currency
+    selectCountry: "اختيار البلد",
+    selectCurrency: "اختيار العملة",
+    selectLanguage: "اختيار اللغة",
+    
+    // Footer
+    ourMission: "رسالتنا",
+    ourPhilosophy: "فلسفتنا",
+    departmentManagers: "مدراء الأقسام",
+    chatBot: "الدردشة الآلية",
+    tickets: "التذاكر",
+    quickSupport: "الدعم السريع",
   }
 };
