@@ -14,6 +14,7 @@ export const authTranslations = {
     invalidCode: "Invalid code - Resend",
     resendOTP: "Resend OTP",
     sendCodeToEmail: "Send me a code via email",
+    verificationSuccessful: "Verification Successful",
     
     // Form fields
     fullName: "Full Name",
@@ -22,6 +23,7 @@ export const authTranslations = {
     country: "Country",
     selectRole: "Select Initial Role",
     justBrowse: "Just Browse",
+    selectCountry: "Select Country",
     
     // Security features
     logoutAllDevices: "Logout from all devices",
@@ -48,6 +50,7 @@ export const authTranslations = {
     invalidCode: "رمز غير صحيح - أعد الإرسال",
     resendOTP: "إعادة إرسال الرمز",
     sendCodeToEmail: "أرسل لي رمز على الإيميل",
+    verificationSuccessful: "تم التحقق بنجاح",
     
     // Form fields
     fullName: "الاسم الكامل",
@@ -56,6 +59,7 @@ export const authTranslations = {
     country: "البلد",
     selectRole: "اختيار الدور الأولي",
     justBrowse: "التصفح فقط",
+    selectCountry: "اختر البلد",
     
     // Security features
     logoutAllDevices: "تسجيل الخروج من كل الأجهزة",
