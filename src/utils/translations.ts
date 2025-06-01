@@ -1,3 +1,4 @@
+
 export const translations = {
   en: {
     indexTitle: "Global Purchasing Organization",
@@ -62,7 +63,6 @@ export const translations = {
     activeContracts: "Active Contracts",
     contractsManagement: "Manage your contracts and track their status.",
     contract: "Contract",
-    client: "Client",
     value: "Value",
     status: "Status",
     date: "Date",
@@ -81,8 +81,9 @@ export const translations = {
     invite: "Invite",
     active: "Active",
     votes: "Votes",
+    totalVotes: "Total Votes",
 
-    // New voting system translations
+    // Voting system translations
     voteSystem: "Voting System",
     castVote: "Cast Your Vote",
     votesRequired: "Votes Required",
@@ -169,7 +170,6 @@ export const translations = {
     activeContracts: "العقود النشطة",
     contractsManagement: "إدارة العقود الخاصة بك وتتبع حالتها.",
     contract: "عقد",
-    client: "عميل",
     value: "القيمة",
     status: "الحالة",
     date: "التاريخ",
@@ -188,8 +188,9 @@ export const translations = {
     invite: "دعوة",
     active: "نشط",
     votes: "أصوات",
+    totalVotes: "إجمالي الأصوات",
 
-    // New voting system translations
+    // Voting system translations
     voteSystem: "نظام التصويت",
     castVote: "أدلِ بصوتك",
     votesRequired: "الأصوات المطلوبة",
@@ -213,4 +214,8 @@ export const translations = {
     activeVotes: "التصويتات النشطة",
     pastVotes: "التصويتات السابقة",
   }
+};
+
+export const t = (key: keyof typeof translations.en, lang: 'en' | 'ar') => {
+  return translations[lang][key] || key;
 };
