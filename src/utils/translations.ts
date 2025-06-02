@@ -1,4 +1,3 @@
-
 import { commonTranslations } from './translations/common';
 import { homepageTranslations } from './translations/homepage';
 import { rolesTranslations } from './translations/roles';
@@ -11,6 +10,9 @@ import { votingTranslations } from './translations/voting';
 import { offersTranslations } from './translations/offers';
 import { arbitrationTranslations } from './translations/arbitration';
 import { mcpTranslations } from './translations/mcp';
+import { chatbotTranslations } from './translations/chatbot';
+import { contractsTranslations } from './translations/contracts';
+import { suppliersTranslations } from './translations/suppliers';
 
 // Combine all translation modules
 export const translations = {
@@ -27,6 +29,9 @@ export const translations = {
     ...offersTranslations.en,
     ...arbitrationTranslations.en,
     ...mcpTranslations.en,
+    ...chatbotTranslations.en,
+    ...contractsTranslations.en,
+    ...suppliersTranslations.en,
   },
   ar: {
     ...commonTranslations.ar,
@@ -41,6 +46,9 @@ export const translations = {
     ...offersTranslations.ar,
     ...arbitrationTranslations.ar,
     ...mcpTranslations.ar,
+    ...chatbotTranslations.ar,
+    ...contractsTranslations.ar,
+    ...suppliersTranslations.ar,
   }
 };
 
