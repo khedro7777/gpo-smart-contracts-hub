@@ -10,6 +10,7 @@ import { groupsTranslations } from './translations/groups';
 import { votingTranslations } from './translations/voting';
 import { offersTranslations } from './translations/offers';
 import { arbitrationTranslations } from './translations/arbitration';
+import { mcpTranslations } from './translations/mcp';
 
 // Combine all translation modules
 export const translations = {
@@ -25,6 +26,7 @@ export const translations = {
     ...votingTranslations.en,
     ...offersTranslations.en,
     ...arbitrationTranslations.en,
+    ...mcpTranslations.en,
   },
   ar: {
     ...commonTranslations.ar,
@@ -38,6 +40,7 @@ export const translations = {
     ...votingTranslations.ar,
     ...offersTranslations.ar,
     ...arbitrationTranslations.ar,
+    ...mcpTranslations.ar,
   }
 };
 
