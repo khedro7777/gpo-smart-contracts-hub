@@ -29,6 +29,12 @@ import SupplierContracts from "./pages/dashboard/supplier/SupplierContracts";
 import SupplierInvoices from "./pages/dashboard/supplier/SupplierInvoices";
 import SupplierAccount from "./pages/dashboard/supplier/SupplierAccount";
 import SupplierNotifications from "./pages/dashboard/supplier/SupplierNotifications";
+import SupplierArbitration from "./pages/dashboard/supplier/SupplierArbitration";
+
+// New pages
+import CompanySetup from "./pages/dashboard/CompanySetup";
+import BusinessManagement from "./pages/dashboard/BusinessManagement";
+import AIInsights from "./pages/dashboard/AIInsights";
 
 import NotFound from "./pages/NotFound";
 
@@ -65,6 +71,12 @@ const App = () => (
             <Route path="/dashboard/supplier/invoices" element={<SupplierInvoices />} />
             <Route path="/dashboard/supplier/account" element={<SupplierAccount />} />
             <Route path="/dashboard/supplier/notifications" element={<SupplierNotifications />} />
+            <Route path="/dashboard/supplier/arbitration" element={<SupplierArbitration />} />
+            
+            {/* Shared Dashboard Routes */}
+            <Route path="/dashboard/company-setup" element={<CompanySetup />} />
+            <Route path="/dashboard/business-management" element={<BusinessManagement />} />
+            <Route path="/dashboard/ai-insights" element={<AIInsights />} />
             
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
