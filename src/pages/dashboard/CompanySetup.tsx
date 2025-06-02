@@ -102,7 +102,7 @@ const CompanySetup = () => {
                 {currentStep > step.id ? (
                   <CheckCircle className="h-5 w-5" />
                 ) : (
-                  <step.icon className="h-5 w-5" />
+                  React.createElement(step.icon, { className: "h-5 w-5" })
                 )}
               </div>
               <span className={`ml-2 text-sm font-medium ${
