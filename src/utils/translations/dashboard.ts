@@ -7,6 +7,13 @@ export const dashboardTranslations = {
     notifications: "Notifications",
     logout: "Logout",
     
+    // Dashboard Stats
+    activeRFQs: "Active RFQs",
+    monthlyRevenue: "Monthly Revenue",
+    activeProcurements: "Active Procurements",
+    costSavings: "Cost Savings",
+    completedOrders: "Completed Orders",
+    
     // Groups
     groups: "Groups",
     myGroups: "My Groups",
@@ -64,6 +71,13 @@ export const dashboardTranslations = {
     account: "الحساب",
     notifications: "الإشعارات",
     logout: "تسجيل الخروج",
+    
+    // Dashboard Stats
+    activeRFQs: "طلبات العروض النشطة",
+    monthlyRevenue: "الإيرادات الشهرية",
+    activeProcurements: "المشتريات النشطة",
+    costSavings: "توفير التكاليف",
+    completedOrders: "الطلبات المكتملة",
     
     // Groups
     groups: "المجموعات",
