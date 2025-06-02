@@ -123,7 +123,7 @@ const CompanySetup = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <steps[currentStep - 1].icon className="h-6 w-6" />
+              {React.createElement(steps[currentStep - 1].icon, { className: "h-6 w-6" })}
               {steps[currentStep - 1].title}
             </CardTitle>
             <Progress value={(currentStep / 4) * 100} className="w-full" />
