@@ -15,6 +15,8 @@ export const homepageTranslations = {
     suppliers: "Suppliers",
     freelancers: "Freelancers",
     arbitration: "Arbitration",
+    companyIncorporation: "Company Incorporation",
+    contractDocumentation: "Contract Documentation",
     
     // Service descriptions
     groupBuyingDesc: "Join forces with others for better deals and shared benefits.",
@@ -22,6 +24,8 @@ export const homepageTranslations = {
     freelancersDesc: "Showcase your skills or participate in collaborative tasks.",
     suppliersDesc: "Find quality suppliers or offer your products and services.",
     arbitrationDesc: "Resolve disputes with our fair and transparent system.",
+    companyIncorporationDesc: "Establish your company in Egypt, UK, USA, UAE, or Saudi Arabia with expert guidance.",
+    contractDocumentationDesc: "Upload, sign, and store contracts securely with blockchain verification.",
     
     // Workflow steps
     verification: "Verification",
@@ -82,6 +86,8 @@ export const homepageTranslations = {
     suppliers: "الموردون", 
     freelancers: "المستقلون",
     arbitration: "التحكيم",
+    companyIncorporation: "تأسيس الشركات",
+    contractDocumentation: "توثيق العقود",
     
     // Service descriptions
     groupBuyingDesc: "انضم إلى مجموعة لشراء منتجات أو خدمات بكميات أفضل.",
@@ -89,6 +95,8 @@ export const homepageTranslations = {
     freelancersDesc: "اعرض مهاراتك أو شارك في مهام تعاونية.",
     suppliersDesc: "قدم عروضك للمجموعات الجاهزة للتفاوض.",
     arbitrationDesc: "حل النزاعات من خلال نظامنا العادل والشفاف.",
+    companyIncorporationDesc: "أسس شركتك في مصر أو المملكة المتحدة أو الولايات المتحدة أو الإمارات أو السعودية مع إرشاد الخبراء.",
+    contractDocumentationDesc: "ارفع ووقع واحفظ العقود بأمان مع التحقق بتقنية البلوك تشين.",
     
     // Workflow steps
     verification: "التحقق",

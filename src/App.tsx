@@ -36,6 +36,11 @@ import CompanySetup from "./pages/dashboard/CompanySetup";
 import BusinessManagement from "./pages/dashboard/BusinessManagement";
 import AIInsights from "./pages/dashboard/AIInsights";
 
+// New service pages
+import CompanyIncorporation from "./pages/services/CompanyIncorporation";
+import Arbitration from "./pages/services/Arbitration";
+import ContractDocumentation from "./pages/services/ContractDocumentation";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +58,11 @@ const App = () => (
             <Route path="/role-select" element={<RoleSelect />} />
             <Route path="/about" element={<About />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
+            
+            {/* Service Routes */}
+            <Route path="/services/company-incorporation" element={<CompanyIncorporation />} />
+            <Route path="/services/arbitration" element={<Arbitration />} />
+            <Route path="/services/contract-documentation" element={<ContractDocumentation />} />
             
             {/* Client Routes */}
             <Route path="/dashboard/client" element={<ClientDashboard />} />
