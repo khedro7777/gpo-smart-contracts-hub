@@ -31,10 +31,13 @@ import SupplierAccount from "./pages/dashboard/supplier/SupplierAccount";
 import SupplierNotifications from "./pages/dashboard/supplier/SupplierNotifications";
 import SupplierArbitration from "./pages/dashboard/supplier/SupplierArbitration";
 
-// New pages
+// New shared dashboard routes
 import CompanySetup from "./pages/dashboard/CompanySetup";
 import BusinessManagement from "./pages/dashboard/BusinessManagement";
 import AIInsights from "./pages/dashboard/AIInsights";
+import FreelancerManagement from "./pages/dashboard/FreelancerManagement";
+import InvoiceManagement from "./pages/dashboard/InvoiceManagement";
+import VotingCenter from "./pages/dashboard/VotingCenter";
 
 // New service pages
 import CompanyIncorporation from "./pages/services/CompanyIncorporation";
@@ -83,10 +86,13 @@ const App = () => (
             <Route path="/dashboard/supplier/notifications" element={<SupplierNotifications />} />
             <Route path="/dashboard/supplier/arbitration" element={<SupplierArbitration />} />
             
-            {/* Shared Dashboard Routes */}
+            {/* Enhanced Shared Dashboard Routes */}
             <Route path="/dashboard/company-setup" element={<CompanySetup />} />
             <Route path="/dashboard/business-management" element={<BusinessManagement />} />
             <Route path="/dashboard/ai-insights" element={<AIInsights />} />
+            <Route path="/dashboard/freelancer-management" element={<FreelancerManagement />} />
+            <Route path="/dashboard/invoice-management" element={<InvoiceManagement />} />
+            <Route path="/dashboard/voting-center" element={<VotingCenter />} />
             
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />

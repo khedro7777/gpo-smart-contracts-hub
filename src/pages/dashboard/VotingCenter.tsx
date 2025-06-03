@@ -1,14 +1,14 @@
 
 import React from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import EnhancedMCPDashboard from '@/components/mcp/EnhancedMCPDashboard';
+import AdvancedVotingSystem from '@/components/voting/AdvancedVotingSystem';
 
-const AIInsights = () => {
+const VotingCenter = () => {
   return (
     <DashboardLayout role="client">
-      <EnhancedMCPDashboard />
+      <AdvancedVotingSystem />
     </DashboardLayout>
   );
 };
 
-export default AIInsights;
+export default VotingCenter;
