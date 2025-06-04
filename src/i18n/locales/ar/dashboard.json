@@ -1,0 +1,40 @@
+
+{
+  "titles": {
+    "dashboard": "لوحة التحكم",
+    "overview": "نظرة عامة",
+    "analytics": "التحليلات",
+    "myActivity": "نشاطي",
+    "recentActions": "الإجراءات الأخيرة",
+    "quickActions": "إجراءات سريعة"
+  },
+  "stats": {
+    "activeGroups": "المجموعات النشطة",
+    "totalMembers": "إجمالي الأعضاء",
+    "completedProjects": "المشاريع المكتملة",
+    "monthlyRevenue": "الإيرادات الشهرية",
+    "activeRFQs": "طلبات العروض النشطة",
+    "activeProcurements": "المشتريات النشطة",
+    "costSavings": "توفير التكاليف",
+    "completedOrders": "الطلبات المكتملة"
+  },
+  "groups": {
+    "myGroups": "مجموعاتي",
+    "createNewGroup": "إنشاء مجموعة جديدة",
+    "joinGroup": "انضم للمجموعة",
+    "manageGroup": "إدارة المجموعة",
+    "groupMembers": "أعضاء المجموعة",
+    "groupSettings": "إعدادات المجموعة",
+    "groupActivity": "نشاط المجموعة",
+    "pendingInvitations": "الدعوات المعلقة",
+    "discoverGroups": "اكتشف المجموعات"
+  },
+  "notifications": {
+    "newMessage": "تم استلام رسالة جديدة",
+    "groupInvitation": "تم استلام دعوة مجموعة",
+    "proposalUpdate": "تم تحديث حالة العرض",
+    "votingStarted": "بدأ التصويت",
+    "contractSigned": "تم توقيع العقد",
+    "paymentReceived": "تم استلام الدفعة"
+  }
+}

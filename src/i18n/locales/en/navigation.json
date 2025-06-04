@@ -1,0 +1,48 @@
+
+{
+  "header": {
+    "home": "Home",
+    "about": "About Us",
+    "howItWorks": "How It Works",
+    "workspace": "Workspace",
+    "services": "Services",
+    "support": "Support",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings",
+    "notifications": "Notifications"
+  },
+  "footer": {
+    "platform": "Platform",
+    "services": "Services",
+    "legal": "Legal & Compliance",
+    "support": "Support",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "compliance": "Compliance",
+    "cookiePolicy": "Cookie Policy",
+    "helpCenter": "Help Center",
+    "contactUs": "Contact Us",
+    "documentation": "Documentation",
+    "apiReference": "API Reference"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "myGroups": "My Groups",
+    "createGroup": "Create Group",
+    "discoverGroups": "Discover Groups",
+    "freelancers": "Freelancers",
+    "suppliers": "Suppliers",
+    "contracts": "Contracts",
+    "voting": "Voting",
+    "arbitration": "Arbitration",
+    "companyFormation": "Company Formation",
+    "billing": "Billing",
+    "reports": "Reports",
+    "account": "Account"
+  }
+}

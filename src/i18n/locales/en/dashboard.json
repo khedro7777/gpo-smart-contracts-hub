@@ -1,0 +1,40 @@
+
+{
+  "titles": {
+    "dashboard": "Dashboard",
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "myActivity": "My Activity",
+    "recentActions": "Recent Actions",
+    "quickActions": "Quick Actions"
+  },
+  "stats": {
+    "activeGroups": "Active Groups",
+    "totalMembers": "Total Members",
+    "completedProjects": "Completed Projects",
+    "monthlyRevenue": "Monthly Revenue",
+    "activeRFQs": "Active RFQs",
+    "activeProcurements": "Active Procurements",
+    "costSavings": "Cost Savings",
+    "completedOrders": "Completed Orders"
+  },
+  "groups": {
+    "myGroups": "My Groups",
+    "createNewGroup": "Create New Group",
+    "joinGroup": "Join Group",
+    "manageGroup": "Manage Group",
+    "groupMembers": "Group Members",
+    "groupSettings": "Group Settings",
+    "groupActivity": "Group Activity",
+    "pendingInvitations": "Pending Invitations",
+    "discoverGroups": "Discover Groups"
+  },
+  "notifications": {
+    "newMessage": "New message received",
+    "groupInvitation": "Group invitation received",
+    "proposalUpdate": "Proposal status updated",
+    "votingStarted": "Voting has started",
+    "contractSigned": "Contract has been signed",
+    "paymentReceived": "Payment received"
+  }
+}

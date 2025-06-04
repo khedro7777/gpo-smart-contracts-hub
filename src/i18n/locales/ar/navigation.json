@@ -1,0 +1,48 @@
+
+{
+  "header": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "howItWorks": "كيف تعمل",
+    "workspace": "مساحة العمل",
+    "services": "الخدمات",
+    "support": "الدعم",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "register": "التسجيل",
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "notifications": "الإشعارات"
+  },
+  "footer": {
+    "platform": "المنصة",
+    "services": "الخدمات",
+    "legal": "القانونية والامتثال",
+    "support": "الدعم",
+    "aboutUs": "من نحن",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "compliance": "الامتثال",
+    "cookiePolicy": "سياسة ملفات تعريف الارتباط",
+    "helpCenter": "مركز المساعدة",
+    "contactUs": "اتصل بنا",
+    "documentation": "التوثيق",
+    "apiReference": "مرجع API"
+  },
+  "sidebar": {
+    "dashboard": "لوحة التحكم",
+    "myGroups": "مجموعاتي",
+    "createGroup": "إنشاء مجموعة",
+    "discoverGroups": "اكتشف المجموعات",
+    "freelancers": "المستقلون",
+    "suppliers": "الموردون",
+    "contracts": "العقود",
+    "voting": "التصويت",
+    "arbitration": "التحكيم",
+    "companyFormation": "تأسيس الشركات",
+    "billing": "الفوترة",
+    "reports": "التقارير",
+    "account": "الحساب"
+  }
+}

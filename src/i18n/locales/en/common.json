@@ -1,0 +1,60 @@
+
+{
+  "buttons": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "joinNow": "Join Now",
+    "createGroup": "Create Group",
+    "viewDetails": "View Details",
+    "apply": "Apply",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish"
+  },
+  "status": {
+    "active": "Active",
+    "pending": "Pending",
+    "completed": "Completed",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "under_review": "Under Review",
+    "in_progress": "In Progress",
+    "paused": "Paused",
+    "cancelled": "Cancelled"
+  },
+  "time": {
+    "now": "Now",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "lastMonth": "Last Month",
+    "daysAgo": "{{count}} days ago",
+    "hoursAgo": "{{count}} hours ago",
+    "minutesAgo": "{{count}} minutes ago"
+  },
+  "currency": {
+    "sar": "Saudi Riyal",
+    "aed": "UAE Dirham",
+    "egp": "Egyptian Pound",
+    "usd": "US Dollar",
+    "gbp": "British Pound",
+    "eur": "Euro",
+    "jod": "Jordanian Dinar"
+  },
+  "countries": {
+    "sa": "Saudi Arabia",
+    "ae": "United Arab Emirates",
+    "eg": "Egypt",
+    "us": "United States",
+    "gb": "United Kingdom",
+    "ee": "Estonia",
+    "jo": "Jordan"
+  }
+}
