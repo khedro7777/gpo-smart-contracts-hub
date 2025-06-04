@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,7 +11,7 @@ import WorkflowDiagram from '@/components/WorkflowDiagram';
 import GPOMachine from '@/components/GPOMachine';
 import OpenOffersSection from '@/components/OpenOffersSection';
 import { useNavigate } from 'react-router-dom';
-import { Search, Filter, Globe, DollarSign, Clock, Building2, Scale, FileText } from 'lucide-react';
+import { Search, Filter, Globe, DollarSign, Clock, Building2, Scale, FileText, Zap } from 'lucide-react';
 
 const Index = () => {
   const { language } = useLanguage();
@@ -85,6 +86,15 @@ const Index = () => {
         : 'ارفع ووقع واحفظ العقود بأمان مع التحقق بتقنية البلوك تشين',
       icon: <FileText className="w-9 h-9" />,
       action: () => navigate('/services/contract-documentation')
+    },
+    {
+      id: 'gpoWorkspace',
+      title: language === 'en' ? 'GPO Workspace' : 'مساحة عمل GPO',
+      description: language === 'en' 
+        ? 'Professional business collaboration platform with AI-powered insights'
+        : 'منصة التعاون التجاري المهني مع رؤى مدعومة بالذكاء الاصطناعي',
+      icon: <Zap className="w-9 h-9" />,
+      action: () => navigate('/workspace')
     }
   ];
 
@@ -137,13 +147,19 @@ const Index = () => {
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 md:mb-8 px-4">
             {language === 'en' 
-              ? 'Smart contracting platform between buyers, suppliers, and freelancers'
-              : 'منصة التعاقد الذكي بين المشترين والموردين والمستقلين'
+              ? 'Professional business collaboration platform with Harvard Business School methodology'
+              : 'منصة التعاون التجاري المهني بمنهجية كلية هارفارد للأعمال'
             }
           </p>
-          <Button size="lg" onClick={() => navigate('/auth')} className="px-6 py-3 text-base md:text-lg">
-            {t('getStarted', language)}
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button size="lg" onClick={() => navigate('/workspace')} className="px-8 py-3 text-base md:text-lg bg-gpo-blue hover:bg-gpo-blue/90">
+              <Zap className="mr-2 h-5 w-5" />
+              {language === 'en' ? 'Launch Workspace' : 'تشغيل مساحة العمل'}
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => navigate('/auth')} className="px-6 py-3 text-base md:text-lg">
+              {t('getStarted', language)}
+            </Button>
+          </div>
         </div>
       </section>
       

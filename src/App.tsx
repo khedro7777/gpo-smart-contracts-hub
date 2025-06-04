@@ -31,18 +31,22 @@ import SupplierAccount from "./pages/dashboard/supplier/SupplierAccount";
 import SupplierNotifications from "./pages/dashboard/supplier/SupplierNotifications";
 import SupplierArbitration from "./pages/dashboard/supplier/SupplierArbitration";
 
-// New shared dashboard routes
+// Enhanced shared dashboard routes
 import CompanySetup from "./pages/dashboard/CompanySetup";
 import BusinessManagement from "./pages/dashboard/BusinessManagement";
 import AIInsights from "./pages/dashboard/AIInsights";
 import FreelancerManagement from "./pages/dashboard/FreelancerManagement";
 import InvoiceManagement from "./pages/dashboard/InvoiceManagement";
 import VotingCenter from "./pages/dashboard/VotingCenter";
+import BusinessIntelligence from "./pages/dashboard/BusinessIntelligence";
 
 // New service pages
 import CompanyIncorporation from "./pages/services/CompanyIncorporation";
 import Arbitration from "./pages/services/Arbitration";
 import ContractDocumentation from "./pages/services/ContractDocumentation";
+
+// GPO Workspace
+import GPOWorkspacePage from "./pages/GPOWorkspacePage";
 
 import NotFound from "./pages/NotFound";
 
@@ -61,6 +65,9 @@ const App = () => (
             <Route path="/role-select" element={<RoleSelect />} />
             <Route path="/about" element={<About />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
+            
+            {/* GPO Workspace */}
+            <Route path="/workspace" element={<GPOWorkspacePage />} />
             
             {/* Service Routes */}
             <Route path="/services/company-incorporation" element={<CompanyIncorporation />} />
@@ -93,6 +100,7 @@ const App = () => (
             <Route path="/dashboard/freelancer-management" element={<FreelancerManagement />} />
             <Route path="/dashboard/invoice-management" element={<InvoiceManagement />} />
             <Route path="/dashboard/voting-center" element={<VotingCenter />} />
+            <Route path="/dashboard/business-intelligence" element={<BusinessIntelligence />} />
             
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
