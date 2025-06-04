@@ -1,6 +1,7 @@
 
 import { Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import Index from '@/pages/Index';
 import About from '@/pages/About';
 import Auth from '@/pages/Auth';
@@ -43,9 +44,12 @@ import FreelancerGateway from '@/components/gateways/FreelancerGateway';
 function App() {
   const { i18n } = useTranslation();
   
-  // Set document direction based on language
-  document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
-  document.documentElement.lang = i18n.language;
+  useEffect(() => {
+    // Set document direction based on language
+    const direction = i18n.language === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = direction;
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   return (
     <Routes>

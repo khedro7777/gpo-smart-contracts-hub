@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Globe } from 'lucide-react';
 
@@ -23,7 +22,10 @@ const LanguageSwitcher: React.FC = () => {
   
   const changeLanguage = (langCode: string) => {
     i18n.changeLanguage(langCode);
-    document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
+    
+    // Update document direction and language
+    const direction = langCode === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = direction;
     document.documentElement.lang = langCode;
   };
 
