@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useTranslation } from 'react-i18next';
-import { ChevronUp, ChevronDown, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 // Import the new components
 import MinimizedButton from './mcp/MinimizedButton';
@@ -20,7 +20,6 @@ const MCPIntelligenceHub = () => {
   const [isListening, setIsListening] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -34,45 +33,22 @@ const MCPIntelligenceHub = () => {
     // Implement voice recognition logic here
   };
 
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-    if (isExpanded) {
-      setIsCollapsed(false);
-    }
-  };
-
   if (isMinimized) {
     return <MinimizedButton onExpand={() => setIsMinimized(false)} />;
   }
 
   return (
-    <div className={`fixed bottom-4 right-4 z-40 transition-all duration-300 ${
-      isExpanded 
-        ? 'w-full max-w-2xl h-[80vh]' 
-        : 'w-full max-w-sm sm:w-96 max-w-[calc(100vw-2rem)]'
-    }`}>
-      <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm h-full flex flex-col">
-        <div className="flex items-center justify-between p-4">
-          <MCPHeader onMinimize={() => setIsMinimized(true)} />
-          <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleExpanded}
-              className="h-6 w-6 p-0"
-            >
-              {isExpanded ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
-            </Button>
-          </div>
-        </div>
+    <div className="fixed bottom-4 right-4 w-full max-w-sm sm:w-96 max-w-[calc(100vw-2rem)] z-40">
+      <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
+        <MCPHeader onMinimize={() => setIsMinimized(true)} />
         
         <div className="px-4 pb-3">
           <ModeSelector activeMode={activeMode} onModeChange={setActiveMode} />
         </div>
 
-        <Collapsible open={!isCollapsed} onOpenChange={setIsCollapsed} className="flex-1 flex flex-col">
+        <Collapsible open={!isCollapsed} onOpenChange={setIsCollapsed}>
           <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm" className="w-full justify-between p-2 flex-shrink-0">
+            <Button variant="ghost" size="sm" className="w-full justify-between p-2">
               <span className="text-sm">
                 {i18n.language === 'ar' ? 'المحتوى' : 'Content'}
               </span>
@@ -80,12 +56,10 @@ const MCPIntelligenceHub = () => {
             </Button>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="flex-1 flex flex-col overflow-hidden">
-            <div className="flex-1 overflow-auto">
-              <MCPContent activeMode={activeMode} />
-            </div>
+          <CollapsibleContent>
+            <MCPContent activeMode={activeMode} />
             
-            <div className="px-4 pb-4 flex-shrink-0">
+            <div className="px-4 pb-4">
               <InputArea
                 message={message}
                 setMessage={setMessage}
