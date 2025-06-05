@@ -1,12 +1,14 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useTranslation } from 'react-i18next';
-import { Globe, Zap } from 'lucide-react';
+import { Globe, Zap, ChevronDown, ChevronUp, Settings, BarChart3 } from 'lucide-react';
 
 const WorkspaceHeader: React.FC = () => {
   const { i18n } = useTranslation();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="mb-6 sm:mb-8">
@@ -39,6 +41,53 @@ const WorkspaceHeader: React.FC = () => {
           </Button>
         </div>
       </div>
+
+      {/* Expandable Quick Tools Section */}
+      <Collapsible open={isExpanded} onOpenChange={setIsExpanded} className="mt-4">
+        <CollapsibleTrigger asChild>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="w-full sm:w-auto flex items-center gap-2"
+          >
+            <span className="text-sm">
+              {i18n.language === 'ar' ? 'أدوات سريعة' : 'Quick Tools'}
+            </span>
+            {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </Button>
+        </CollapsibleTrigger>
+
+        <CollapsibleContent>
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <Button variant="ghost" size="sm" className="flex flex-col items-center gap-2 h-auto py-3">
+                <Settings className="h-5 w-5" />
+                <span className="text-xs">
+                  {i18n.language === 'ar' ? 'الإعدادات' : 'Settings'}
+                </span>
+              </Button>
+              <Button variant="ghost" size="sm" className="flex flex-col items-center gap-2 h-auto py-3">
+                <BarChart3 className="h-5 w-5" />
+                <span className="text-xs">
+                  {i18n.language === 'ar' ? 'التحليلات' : 'Analytics'}
+                </span>
+              </Button>
+              <Button variant="ghost" size="sm" className="flex flex-col items-center gap-2 h-auto py-3">
+                <Globe className="h-5 w-5" />
+                <span className="text-xs">
+                  {i18n.language === 'ar' ? 'الشبكة' : 'Network'}
+                </span>
+              </Button>
+              <Button variant="ghost" size="sm" className="flex flex-col items-center gap-2 h-auto py-3">
+                <Zap className="h-5 w-5" />
+                <span className="text-xs">
+                  {i18n.language === 'ar' ? 'الأتمتة' : 'Automation'}
+                </span>
+              </Button>
+            </div>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };
