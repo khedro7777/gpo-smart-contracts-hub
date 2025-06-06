@@ -46,7 +46,7 @@ const MCPIntelligenceHub = () => {
   }
 
   return (
-    <div className={`fixed bottom-4 right-4 z-40 transition-all duration-300 ${
+    <div className={`fixed bottom-4 right-4 z-50 transition-all duration-300 ${
       isExpanded 
         ? 'w-full max-w-2xl h-[80vh]' 
         : 'w-full max-w-sm sm:w-96 max-w-[calc(100vw-2rem)]'
