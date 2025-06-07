@@ -18,7 +18,10 @@ import {
   Settings,
   Globe,
   FileText,
-  Shield
+  Shield,
+  Bot,
+  Mic,
+  Send
 } from 'lucide-react';
 import AIPromptBox from '@/components/ai/AIPromptBox';
 
@@ -32,6 +35,7 @@ interface WorkspaceStats {
 const ModernWorkspace: React.FC = () => {
   const { i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [aiMode, setAiMode] = useState<'auto' | 'ai' | 'manual'>('ai');
   
   const stats: WorkspaceStats = {
     totalSavings: 2850000,
@@ -45,25 +49,29 @@ const ModernWorkspace: React.FC = () => {
       icon: <FileText className="h-5 w-5" />,
       title: i18n.language === 'ar' ? 'إنشاء عقد جديد' : 'Create New Contract',
       description: i18n.language === 'ar' ? 'صياغة عقد بمعايير دولية' : 'Draft international standard contract',
-      color: 'bg-blue-50 text-blue-600 border-blue-200'
+      color: 'bg-blue-50 text-blue-600 border-blue-200',
+      href: '/contracts'
     },
     {
       icon: <Users className="h-5 w-5" />,
       title: i18n.language === 'ar' ? 'البحث عن موردين' : 'Find Suppliers',
       description: i18n.language === 'ar' ? 'اكتشاف موردين جدد موثوقين' : 'Discover reliable new suppliers',
-      color: 'bg-green-50 text-green-600 border-green-200'
+      color: 'bg-green-50 text-green-600 border-green-200',
+      href: '/dashboard/supplier'
     },
     {
       icon: <BarChart3 className="h-5 w-5" />,
       title: i18n.language === 'ar' ? 'تحليل السوق' : 'Market Analysis',
       description: i18n.language === 'ar' ? 'رؤى السوق والاتجاهات' : 'Market insights and trends',
-      color: 'bg-purple-50 text-purple-600 border-purple-200'
+      color: 'bg-purple-50 text-purple-600 border-purple-200',
+      href: '/dashboard/business-intelligence'
     },
     {
       icon: <Target className="h-5 w-5" />,
       title: i18n.language === 'ar' ? 'تحسين التكاليف' : 'Cost Optimization',
       description: i18n.language === 'ar' ? 'استراتيجيات توفير التكاليف' : 'Cost-saving strategies',
-      color: 'bg-orange-50 text-orange-600 border-orange-200'
+      color: 'bg-orange-50 text-orange-600 border-orange-200',
+      href: '/dashboard/ai-insights'
     }
   ];
 
@@ -96,8 +104,8 @@ const ModernWorkspace: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Modern Header with lower z-index */}
-      <div className="bg-white border-b sticky top-0 z-30">
+      {/* Modern Header with correct z-index */}
+      <div className="bg-white border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -115,6 +123,35 @@ const ModernWorkspace: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-3">
+              {/* AI Mode Selector */}
+              <div className="flex bg-gray-100 rounded-lg p-1">
+                <Button
+                  variant={aiMode === 'auto' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setAiMode('auto')}
+                  className="text-xs"
+                >
+                  {i18n.language === 'ar' ? 'تلقائي' : 'Auto'}
+                </Button>
+                <Button
+                  variant={aiMode === 'ai' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setAiMode('ai')}
+                  className="text-xs"
+                >
+                  <Bot className="h-3 w-3 mr-1" />
+                  AI
+                </Button>
+                <Button
+                  variant={aiMode === 'manual' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setAiMode('manual')}
+                  className="text-xs"
+                >
+                  {i18n.language === 'ar' ? 'يدوي' : 'Manual'}
+                </Button>
+              </div>
+              
               <Badge variant="outline" className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 {i18n.language === 'ar' ? 'متصل' : 'Connected'}
@@ -230,6 +267,7 @@ const ModernWorkspace: React.FC = () => {
                       key={index}
                       variant="outline"
                       className={`h-auto p-4 flex flex-col items-start gap-3 hover:shadow-md transition-all ${action.color}`}
+                      onClick={() => window.location.href = action.href}
                     >
                       {action.icon}
                       <div className="text-left">
@@ -285,12 +323,47 @@ const ModernWorkspace: React.FC = () => {
                 <CardTitle>{i18n.language === 'ar' ? 'التحليلات المتقدمة' : 'Advanced Analytics'}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
-                  {i18n.language === 'ar' 
-                    ? 'تحليلات مفصلة وتقارير ذكية قادمة قريباً...'
-                    : 'Detailed analytics and intelligent reports coming soon...'
-                  }
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="p-4">
+                    <h3 className="font-semibold mb-4">
+                      {i18n.language === 'ar' ? 'أداء المشتريات' : 'Procurement Performance'}
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'التوفير هذا الشهر' : 'This Month Savings'}</span>
+                        <span className="font-bold text-green-600">$245,000</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'متوسط وقت التفاوض' : 'Avg Negotiation Time'}</span>
+                        <span className="font-bold">12 days</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'معدل نجاح العطاءات' : 'Bid Success Rate'}</span>
+                        <span className="font-bold text-blue-600">87%</span>
+                      </div>
+                    </div>
+                  </Card>
+                  
+                  <Card className="p-4">
+                    <h3 className="font-semibold mb-4">
+                      {i18n.language === 'ar' ? 'أداء الموردين' : 'Supplier Performance'}
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'معدل التسليم بالوقت' : 'On-time Delivery Rate'}</span>
+                        <span className="font-bold text-green-600">94%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'تقييم الجودة' : 'Quality Rating'}</span>
+                        <span className="font-bold">4.7/5</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>{i18n.language === 'ar' ? 'موردين جدد هذا الشهر' : 'New Suppliers This Month'}</span>
+                        <span className="font-bold text-blue-600">8</span>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -301,12 +374,55 @@ const ModernWorkspace: React.FC = () => {
                 <CardTitle>{i18n.language === 'ar' ? 'أدوات التعاون' : 'Collaboration Tools'}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
-                  {i18n.language === 'ar' 
-                    ? 'أدوات التعاون والمشاركة قادمة قريباً...'
-                    : 'Collaboration and sharing tools coming soon...'
-                  }
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <Card className="p-4 text-center">
+                    <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                    <h3 className="font-semibold mb-2">
+                      {i18n.language === 'ar' ? 'فرق العمل' : 'Team Collaboration'}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {i18n.language === 'ar' 
+                        ? 'تعاون مع فريقك في المشاريع'
+                        : 'Collaborate with your team on projects'
+                      }
+                    </p>
+                    <Button variant="outline" size="sm" className="w-full">
+                      {i18n.language === 'ar' ? 'عرض الفرق' : 'View Teams'}
+                    </Button>
+                  </Card>
+                  
+                  <Card className="p-4 text-center">
+                    <MessageSquare className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                    <h3 className="font-semibold mb-2">
+                      {i18n.language === 'ar' ? 'الرسائل' : 'Messages'}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {i18n.language === 'ar' 
+                        ? 'تواصل مع الموردين والعملاء'
+                        : 'Communicate with suppliers and clients'
+                      }
+                    </p>
+                    <Button variant="outline" size="sm" className="w-full">
+                      {i18n.language === 'ar' ? 'فتح الرسائل' : 'Open Messages'}
+                    </Button>
+                  </Card>
+                  
+                  <Card className="p-4 text-center">
+                    <FileText className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                    <h3 className="font-semibold mb-2">
+                      {i18n.language === 'ar' ? 'المستندات' : 'Documents'}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {i18n.language === 'ar' 
+                        ? 'شارك وأدر المستندات'
+                        : 'Share and manage documents'
+                      }
+                    </p>
+                    <Button variant="outline" size="sm" className="w-full">
+                      {i18n.language === 'ar' ? 'عرض المستندات' : 'View Documents'}
+                    </Button>
+                  </Card>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

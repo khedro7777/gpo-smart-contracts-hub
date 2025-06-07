@@ -14,6 +14,11 @@ import NotFound from "./pages/NotFound";
 import GPOWorkspacePage from "./pages/GPOWorkspacePage";
 import ModernWorkspacePage from "./pages/ModernWorkspacePage";
 
+// New Business Pages
+import ContractsPage from "./pages/ContractsPage";
+import InvoicesPage from "./pages/InvoicesPage";
+import NotificationsPage from "./pages/NotificationsPage";
+
 // Dashboard imports
 import ClientDashboard from "./pages/dashboard/client/ClientDashboard";
 import ClientGroups from "./pages/dashboard/client/ClientGroups";
@@ -61,6 +66,11 @@ function App() {
               <Route path="/role-select" element={<RoleSelect />} />
               <Route path="/workspace" element={<GPOWorkspacePage />} />
               <Route path="/modern-workspace" element={<ModernWorkspacePage />} />
+
+              {/* New Business Pages */}
+              <Route path="/contracts" element={<ContractsPage />} />
+              <Route path="/invoices" element={<InvoicesPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
 
               {/* Dashboard routes */}
               <Route path="/dashboard/client" element={<ClientDashboard />} />

@@ -19,7 +19,9 @@ import {
   Globe,
   TrendingUp,
   Shield,
-  Zap
+  Zap,
+  Bot,
+  MessageSquare
 } from 'lucide-react';
 
 const Index = () => {
@@ -139,8 +141,14 @@ const Index = () => {
                     {language === 'en' ? 'Enter Workspace' : 'دخول مساحة العمل'}
                   </Button>
                 </Link>
+                <Link to="/modern-workspace">
+                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white">
+                    <Bot className="mr-2 h-5 w-5" />
+                    {language === 'en' ? 'AI Workspace' : 'مساحة العمل الذكية'}
+                  </Button>
+                </Link>
                 <Link to="/auth">
-                  <Button variant="outline" size="lg">
+                  <Button variant="outline" size="lg" className="text-gray-900 hover:text-gray-900 border-gray-300 hover:bg-gray-50">
                     {language === 'en' ? 'Get Started' : 'ابدأ الآن'}
                     <ArrowRight className={`h-5 w-5 ${direction === 'rtl' ? 'mr-2 rotate-180' : 'ml-2'}`} />
                   </Button>
@@ -162,6 +170,70 @@ const Index = () => {
                   <div className="text-sm text-gray-600">{stat.label}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* AI Assistant Section */}
+        <section className="py-16 px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+          <div className="container mx-auto max-w-6xl text-center">
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                {language === 'en' ? 'Intelligent Business Assistant' : 'المساعد الذكي للأعمال'}
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                {language === 'en' 
+                  ? 'AI-powered tools for automated procurement, smart negotiations, and business intelligence'
+                  : 'أدوات ذكية للمشتريات الآلية والمفاوضات الذكية وذكاء الأعمال'
+                }
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card className="text-center">
+                <CardHeader>
+                  <MessageSquare className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                  <CardTitle>{language === 'en' ? 'Auto Mode' : 'الوضع التلقائي'}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">
+                    {language === 'en' 
+                      ? 'Automated procurement and supplier management'
+                      : 'إدارة المشتريات والموردين بشكل تلقائي'
+                    }
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center">
+                <CardHeader>
+                  <Bot className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle>{language === 'en' ? 'AI Mode' : 'الوضع الذكي'}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">
+                    {language === 'en' 
+                      ? 'AI-powered insights and recommendations'
+                      : 'رؤى وتوصيات مدعومة بالذكاء الاصطناعي'
+                    }
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center">
+                <CardHeader>
+                  <Users className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                  <CardTitle>{language === 'en' ? 'Manual Mode' : 'الوضع اليدوي'}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">
+                    {language === 'en' 
+                      ? 'Full control over business processes'
+                      : 'تحكم كامل في العمليات التجارية'
+                    }
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -284,7 +356,7 @@ const Index = () => {
 
             <div className="text-center mt-8">
               <Link to="/dashboard/client/groups">
-                <Button variant="outline">
+                <Button variant="outline" className="text-gray-900 hover:text-gray-900 border-gray-300 hover:bg-gray-50">
                   {language === 'en' ? 'View All Opportunities' : 'عرض جميع الفرص'}
                   <ArrowRight className={`h-4 w-4 ${direction === 'rtl' ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
@@ -307,7 +379,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/auth">
-                <Button size="lg" variant="secondary">
+                <Button size="lg" variant="secondary" className="text-gray-900 hover:text-gray-900">
                   {language === 'en' ? 'Start Free Trial' : 'ابدأ النسخة التجريبية'}
                 </Button>
               </Link>
