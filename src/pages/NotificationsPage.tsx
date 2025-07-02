@@ -12,7 +12,7 @@ import {
   Info, 
   Clock, 
   Trash2, 
-  MarkAsRead,
+  Check,
   Settings,
   MessageSquare,
   DollarSign,

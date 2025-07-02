@@ -19,6 +19,9 @@ import ContractsPage from "./pages/ContractsPage";
 import InvoicesPage from "./pages/InvoicesPage";
 import NotificationsPage from "./pages/NotificationsPage";
 
+// Investment Gateway
+import InvestmentPage from "./pages/InvestmentPage";
+
 // Dashboard imports
 import ClientDashboard from "./pages/dashboard/client/ClientDashboard";
 import ClientGroups from "./pages/dashboard/client/ClientGroups";
@@ -71,6 +74,7 @@ function App() {
               <Route path="/contracts" element={<ContractsPage />} />
               <Route path="/invoices" element={<InvoicesPage />} />
               <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/investment" element={<InvestmentPage />} />
 
               {/* Dashboard routes */}
               <Route path="/dashboard/client" element={<ClientDashboard />} />

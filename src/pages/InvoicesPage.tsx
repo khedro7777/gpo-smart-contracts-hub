@@ -1,4 +1,14 @@
 
+// ============================================
+// 📄 INVOICES PAGE COMPONENT
+// ============================================
+// Purpose: Complete invoice management system with sitemap navigation
+// Used in: Main invoice dashboard and management
+// Features: Invoice CRUD, client management, payment tracking, analytics
+// Location: /invoices route - main invoice interface
+// Dependencies: InvoiceSitemap component for navigation
+// ============================================
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useTranslation } from 'react-i18next';
+import InvoiceSitemap from '@/components/invoice/InvoiceSitemap';
 import { 
   Receipt, 
   DollarSign, 
@@ -17,13 +28,27 @@ import {
   Download,
   Send,
   Eye,
-  Plus
+  Plus,
+  Map
 } from 'lucide-react';
 
 const InvoicesPage = () => {
   const { i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  // ============================================
+  // 🗺️ SITEMAP STATE MANAGEMENT
+  // ============================================
+  const [sitemapOpen, setSitemapOpen] = useState(false);
+
+  // ============================================
+  // 🧭 NAVIGATION HANDLER
+  // ============================================
+  const handleSitemapNavigation = (path: string) => {
+    console.log('Navigating to:', path);
+    // Add navigation logic here based on path
+    // This could integrate with React Router or state management
+  };
 
   const invoices = [
     {
@@ -134,10 +159,20 @@ const InvoicesPage = () => {
               }
             </p>
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700">
-            <Plus className="h-4 w-4 mr-2" />
-            {i18n.language === 'ar' ? 'فاتورة جديدة' : 'New Invoice'}
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              onClick={() => setSitemapOpen(true)}
+              className="border-blue-200 text-blue-700 hover:bg-blue-50"
+            >
+              <Map className="h-4 w-4 mr-2" />
+              {i18n.language === 'ar' ? 'خريطة الموقع' : 'Sitemap'}
+            </Button>
+            <Button className="bg-blue-600 hover:bg-blue-700">
+              <Plus className="h-4 w-4 mr-2" />
+              {i18n.language === 'ar' ? 'فاتورة جديدة' : 'New Invoice'}
+            </Button>
+          </div>
         </div>
 
         {/* Stats Cards */}
@@ -296,6 +331,15 @@ const InvoicesPage = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* ============================================ */}
+        {/* 🗺️ SITEMAP OVERLAY COMPONENT */}
+        {/* ============================================ */}
+        <InvoiceSitemap 
+          isOpen={sitemapOpen}
+          onClose={() => setSitemapOpen(false)}
+          onNavigate={handleSitemapNavigation}
+        />
       </div>
     </div>
   );

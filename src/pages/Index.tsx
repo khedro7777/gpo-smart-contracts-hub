@@ -49,6 +49,16 @@ const Index = () => {
       standard: 'WTO'
     },
     {
+      id: 'investment',
+      title: language === 'en' ? 'Investment Gateway' : 'بوابة الاستثمار',
+      description: language === 'en' ? 'Collaborative Investment & Company Management' : 'الاستثمار التعاوني وإدارة الشركات',
+      icon: TrendingUp,
+      color: 'bg-emerald-500',
+      href: '/investment',
+      framework: language === 'en' ? 'Securities Act + Investment Agreements' : 'قانون الأوراق المالية + اتفاقيات استثمار',
+      standard: 'SEC Compliance'
+    },
+    {
       id: 'company_formation',
       title: language === 'en' ? 'Company Formation' : 'تأسيس الشركات',
       description: language === 'en' ? 'Market Entry & Jurisdiction Selection' : 'دخول السوق واختيار الولاية القضائية',
