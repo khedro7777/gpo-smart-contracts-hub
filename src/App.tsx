@@ -44,6 +44,15 @@ import InvoiceManagement from "./pages/dashboard/InvoiceManagement";
 import VotingCenter from "./pages/dashboard/VotingCenter";
 import BusinessIntelligence from "./pages/dashboard/BusinessIntelligence";
 import AIInsights from "./pages/dashboard/AIInsights";
+import MCPDashboard from "./pages/dashboard/MCPDashboard";
+
+// MCP Service Pages
+import MCPChartServer from "./pages/dashboard/mcp/MCPChartServer";
+import MCPWebSearch from "./pages/dashboard/mcp/MCPWebSearch";
+import MCPIPFSStorage from "./pages/dashboard/mcp/MCPIPFSStorage";
+import MCPManim from "./pages/dashboard/mcp/MCPManim";
+import MCPDeepWiki from "./pages/dashboard/mcp/MCPDeepWiki";
+import MCPAshra from "./pages/dashboard/mcp/MCPAshra";
 
 // Services
 import Arbitration from "./pages/services/Arbitration";
@@ -98,6 +107,15 @@ function App() {
               <Route path="/dashboard/voting-center" element={<VotingCenter />} />
               <Route path="/dashboard/business-intelligence" element={<BusinessIntelligence />} />
               <Route path="/dashboard/ai-insights" element={<AIInsights />} />
+
+              {/* MCP Dashboard and Services */}
+              <Route path="/dashboard/mcp" element={<MCPDashboard />} />
+              <Route path="/dashboard/mcp/chart-server" element={<MCPChartServer />} />
+              <Route path="/dashboard/mcp/web-search" element={<MCPWebSearch />} />
+              <Route path="/dashboard/mcp/ipfs" element={<MCPIPFSStorage />} />
+              <Route path="/dashboard/mcp/manim" element={<MCPManim />} />
+              <Route path="/dashboard/mcp/deep-wiki" element={<MCPDeepWiki />} />
+              <Route path="/dashboard/mcp/ashra" element={<MCPAshra />} />
 
               {/* Services */}
               <Route path="/services/arbitration" element={<Arbitration />} />
