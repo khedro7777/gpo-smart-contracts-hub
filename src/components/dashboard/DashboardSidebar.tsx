@@ -125,7 +125,60 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
     }
   ];
 
-  const allItems = [...sidebarItems, ...sharedItems];
+  // Add MCP Dashboard items
+  const mcpItems = [
+    {
+      href: '/dashboard/mcp',
+      title: language === 'en' ? 'MCP Dashboard' : 'لوحة تحكم MCP',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/chart-server',
+      title: language === 'en' ? 'Chart Generator' : 'منشئ الرسوم البيانية',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M9 9h6v6H9z"/><path d="M21 15v4a2 2 0 0 1-2 2h-4"/><path d="M21 9V5a2 2 0 0 0-2-2h-4"/><path d="M3 9V5a2 2 0 0 1 2-2h4"/><path d="M3 15v4a2 2 0 0 0 2 2h4"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/web-search',
+      title: language === 'en' ? 'Web Search' : 'البحث على الويب',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/ipfs',
+      title: language === 'en' ? 'File Storage (IPFS)' : 'تخزين الملفات (IPFS)',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6l-3-3 3-3v6"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/manim',
+      title: language === 'en' ? 'Video Generator' : 'منشئ الفيديو',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/deep-wiki',
+      title: language === 'en' ? 'Deep Wiki' : 'ويكي عميق',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/mcp/ashra',
+      title: language === 'en' ? 'Code Analysis' : 'تحليل الكود',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      ),
+    }
+  ];
+
+  const allItems = [...sidebarItems, ...sharedItems, ...mcpItems];
   
   return (
     <div className="w-64 bg-white border-r h-full p-4">
