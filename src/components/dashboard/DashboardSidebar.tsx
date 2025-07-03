@@ -44,14 +44,32 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
   const { language } = useLanguage();
   const location = useLocation();
   
-  const sidebarItems = [
+  // All dashboard items available for all users
+  const allDashboards = [
     {
-      href: `/dashboard/${role}`,
-      title: t('dashboard', language),
+      href: '/dashboard/client',
+      title: language === 'en' ? 'Client Dashboard' : 'لوحة العميل',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
       ),
     },
+    {
+      href: '/dashboard/freelancer',
+      title: language === 'en' ? 'Freelancer Dashboard' : 'لوحة المستقل',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      ),
+    },
+    {
+      href: '/dashboard/supplier',
+      title: language === 'en' ? 'Supplier Dashboard' : 'لوحة المورد',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-truck"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h2"/><path d="M5 6h9l4 4v8c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/></svg>
+      ),
+    },
+  ];
+  
+  const sidebarItems = [
     {
       href: `/dashboard/${role}/account`,
       title: t('myAccount', language),
@@ -87,21 +105,17 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-receipt"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>
       ),
     },
-  ];
-
-  // Add role-specific items
-  if (role === 'supplier') {
-    sidebarItems.push({
+    {
       href: `/dashboard/${role}/arbitration`,
       title: t('orda', language),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-scale"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
       ),
-    });
-  }
+    },
+  ];
 
-  // Add shared dashboard items
-  const sharedItems = [
+  // Business & AI Services
+  const businessItems = [
     {
       href: '/dashboard/company-setup',
       title: language === 'en' ? 'Company Setup' : 'تأسيس الشركة',
@@ -125,7 +139,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
     }
   ];
 
-  // Add MCP Dashboard items
+  // MCP Dashboard items
   const mcpItems = [
     {
       href: '/dashboard/mcp',
@@ -177,11 +191,9 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
       ),
     }
   ];
-
-  const allItems = [...sidebarItems, ...sharedItems, ...mcpItems];
   
   return (
-    <div className="w-64 bg-white border-r h-full p-4">
+    <div className="w-64 bg-white border-r h-full p-4 overflow-y-auto">
       <div className="mb-8 px-2">
         <Link to="/" className="text-xl font-bold text-gpo-blue">
           GPO
@@ -190,17 +202,94 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ role }) => {
           {t('tagline', language)}
         </p>
       </div>
+
+      {/* Home Button */}
+      <div className="mb-6">
+        <SidebarItem
+          href="/"
+          icon={
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-home">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          }
+          title={language === 'en' ? 'Home' : 'الرئيسية'}
+          active={location.pathname === '/'}
+        />
+      </div>
       
-      <nav className="space-y-2">
-        {allItems.map((item) => (
-          <SidebarItem
-            key={item.href}
-            href={item.href}
-            icon={item.icon}
-            title={item.title}
-            active={location.pathname === item.href}
-          />
-        ))}
+      <nav className="space-y-6">
+        {/* All Dashboards Section */}
+        <div>
+          <h3 className="text-xs uppercase text-gray-400 font-semibold mb-3 px-3">
+            {language === 'en' ? 'Dashboards' : 'لوحات التحكم'}
+          </h3>
+          <div className="space-y-2">
+            {allDashboards.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href}
+                icon={item.icon}
+                title={item.title}
+                active={location.pathname === item.href}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* User Features Section */}
+        <div>
+          <h3 className="text-xs uppercase text-gray-400 font-semibold mb-3 px-3">
+            {language === 'en' ? 'User Features' : 'ميزات المستخدم'}
+          </h3>
+          <div className="space-y-2">
+            {sidebarItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href}
+                icon={item.icon}
+                title={item.title}
+                active={location.pathname === item.href}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Business Services Section */}
+        <div>
+          <h3 className="text-xs uppercase text-gray-400 font-semibold mb-3 px-3">
+            {language === 'en' ? 'Business Services' : 'الخدمات التجارية'}
+          </h3>
+          <div className="space-y-2">
+            {businessItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href}
+                icon={item.icon}
+                title={item.title}
+                active={location.pathname === item.href}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* MCP Services Section */}
+        <div>
+          <h3 className="text-xs uppercase text-gray-400 font-semibold mb-3 px-3">
+            {language === 'en' ? 'MCP Services' : 'خدمات MCP'}
+          </h3>
+          <div className="space-y-2">
+            {mcpItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href}
+                icon={item.icon}
+                title={item.title}
+                active={location.pathname === item.href}
+              />
+            ))}
+          </div>
+        </div>
       </nav>
     </div>
   );
