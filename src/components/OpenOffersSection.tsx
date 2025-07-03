@@ -1,190 +1,137 @@
 
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { t } from '@/utils/translations';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useGroups } from '@/hooks/useGroups';
+import { Users, Clock, MapPin, Eye, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Package, UserCheck, Calendar, MapPin, Vote } from 'lucide-react';
 
 const OpenOffersSection = () => {
   const { language } = useLanguage();
+  const { groups, loading } = useGroups();
   const navigate = useNavigate();
 
-  // Mock data for open offers
-  const openOffers = {
-    lookingForMembers: [
-      {
-        id: 1,
-        name: language === 'en' ? 'Medical Equipment Group - Egypt' : 'مجموعة معدات طبية - مصر',
-        type: language === 'en' ? 'Group Buying' : 'شراء جماعي',
-        country: language === 'en' ? 'Egypt' : 'مصر',
-        status: language === 'en' ? 'Active' : 'نشط',
-        members: '5/15',
-        created: language === 'en' ? '3 days ago' : 'منذ 3 أيام',
-        sector: language === 'en' ? 'Healthcare' : 'رعاية صحية'
-      },
-      {
-        id: 2,
-        name: language === 'en' ? 'Tech Startup Marketing - UAE' : 'تسويق الشركات الناشئة - الإمارات',
-        type: language === 'en' ? 'Cooperative Marketing' : 'تسويق تعاوني',
-        country: language === 'en' ? 'UAE' : 'الإمارات',
-        status: language === 'en' ? 'Voting' : 'تصويت',
-        members: '8/12',
-        created: language === 'en' ? '1 week ago' : 'منذ أسبوع',
-        sector: language === 'en' ? 'Technology' : 'تكنولوجيا'
-      }
-    ],
-    lookingForSuppliers: [
-      {
-        id: 3,
-        name: language === 'en' ? 'Office Furniture Procurement - Saudi Arabia' : 'شراء أثاث مكتبي - السعودية',
-        type: language === 'en' ? 'Supplier Request' : 'طلب موردين',
-        country: language === 'en' ? 'Saudi Arabia' : 'السعودية',
-        status: language === 'en' ? 'Negotiation' : 'تفاوض',
-        members: '10/10',
-        created: language === 'en' ? '5 days ago' : 'منذ 5 أيام',
-        sector: language === 'en' ? 'Office Equipment' : 'معدات مكتبية'
-      }
-    ],
-    lookingForFreelancers: [
-      {
-        id: 4,
-        name: language === 'en' ? 'Website Development Project - Jordan' : 'مشروع تطوير موقع - الأردن',
-        type: language === 'en' ? 'Freelancer Request' : 'طلب مستقلين',
-        country: language === 'en' ? 'Jordan' : 'الأردن',
-        status: language === 'en' ? 'Active' : 'نشط',
-        members: '1/3',
-        created: language === 'en' ? '2 days ago' : 'منذ يومين',
-        sector: language === 'en' ? 'Web Development' : 'تطوير الويب'
-      }
-    ]
-  };
+  // Show only active groups looking for members
+  const openOffers = groups
+    .filter(group => group.status === 'active')
+    .slice(0, 6);
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'active':
-      case 'نشط':
-        return 'bg-green-100 text-green-800';
-      case 'voting':
-      case 'تصويت':
-        return 'bg-blue-100 text-blue-800';
-      case 'negotiation':
-      case 'تفاوض':
-        return 'bg-yellow-100 text-yellow-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'procurement': return 'bg-blue-100 text-blue-800';
+      case 'marketing': return 'bg-green-100 text-green-800';
+      case 'company_formation': return 'bg-purple-100 text-purple-800';
+      case 'freelance': return 'bg-orange-100 text-orange-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
-  const getIcon = (type: string) => {
-    if (type.includes('Buying') || type.includes('شراء')) {
-      return <Users className="h-5 w-5" />;
-    } else if (type.includes('Marketing') || type.includes('تسويق')) {
-      return <Vote className="h-5 w-5" />;
-    } else if (type.includes('Supplier') || type.includes('موردين')) {
-      return <Package className="h-5 w-5" />;
-    } else {
-      return <UserCheck className="h-5 w-5" />;
+  const getTypeText = (type: string) => {
+    switch (type) {
+      case 'procurement': return language === 'ar' ? 'شراء تعاوني' : 'Procurement';
+      case 'marketing': return language === 'ar' ? 'تسويق تعاوني' : 'Marketing';
+      case 'company_formation': return language === 'ar' ? 'تأسيس شركات' : 'Company Formation';
+      case 'freelance': return language === 'ar' ? 'مستقلين' : 'Freelance';
+      default: return type;
     }
   };
 
-  const OfferCard = ({ offer }: { offer: any }) => (
-    <Card className="hover:shadow-md transition-shadow">
-      <CardHeader className="pb-2">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2">
-            {getIcon(offer.type)}
-            <CardTitle className="text-lg">{offer.name}</CardTitle>
-          </div>
-          <Badge className={getStatusColor(offer.status)}>
-            {offer.status}
-          </Badge>
-        </div>
-        <CardDescription className="flex items-center gap-4 text-sm">
-          <span className="flex items-center gap-1">
-            <MapPin className="h-3 w-3" />
-            {offer.country}
-          </span>
-          <span>{offer.sector}</span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-2 text-sm text-gray-600">
-          <div className="flex justify-between">
-            <span>{language === 'en' ? 'Type:' : 'النوع:'}</span>
-            <span>{offer.type}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>{language === 'en' ? 'Members:' : 'الأعضاء:'}</span>
-            <span>{offer.members}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>{language === 'en' ? 'Created:' : 'تاريخ الإنشاء:'}</span>
-            <span className="flex items-center gap-1">
-              <Calendar className="h-3 w-3" />
-              {offer.created}
-            </span>
+  if (loading) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">
+              {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
+            </p>
           </div>
         </div>
-        <Button 
-          className="w-full mt-4" 
-          variant="outline"
-          onClick={() => navigate(`/group-details/${offer.id}`)}
-        >
-          {t('viewDetails', language)}
-        </Button>
-      </CardContent>
-    </Card>
-  );
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          {t('openOffers', language)}
-        </h2>
-        
-        <div className="space-y-12">
-          {/* Groups Looking for Members */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <Users className="h-5 w-5 text-gpo-blue" />
-              {language === 'en' ? 'Groups Looking for Members' : 'مجموعات تبحث عن أعضاء'}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {openOffers.lookingForMembers.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} />
-              ))}
-            </div>
-          </div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            {language === 'ar' ? 'العروض المفتوحة' : 'Open Opportunities'}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            {language === 'ar' 
+              ? 'انضم إلى المجموعات النشطة واستفد من القوة الجماعية'
+              : 'Join active groups and benefit from collective power'
+            }
+          </p>
+        </div>
 
-          {/* Groups Looking for Suppliers */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <Package className="h-5 w-5 text-gpo-blue" />
-              {language === 'en' ? 'Groups Looking for Suppliers' : 'مجموعات تبحث عن موردين'}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {openOffers.lookingForSuppliers.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} />
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {openOffers.map((group) => (
+            <Card key={group.id} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <Badge className={getTypeColor(group.type)}>
+                    {getTypeText(group.type)}
+                  </Badge>
+                  <Badge variant="outline" className="text-green-600">
+                    {language === 'ar' ? 'يقبل أعضاء' : 'Accepting Members'}
+                  </Badge>
+                </div>
+                <CardTitle className="text-lg">{group.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4 line-clamp-2">{group.description}</p>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <Users className="h-4 w-4" />
+                    <span>{group.member_count || 0} {language === 'ar' ? 'عضو' : 'members'}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <Clock className="h-4 w-4" />
+                    <span>{new Date(group.created_at).toLocaleDateString()}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <MapPin className="h-4 w-4" />
+                    <span>{group.service_gateway}</span>
+                  </div>
+                </div>
 
-          {/* Groups Looking for Freelancers */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <UserCheck className="h-5 w-5 text-gpo-blue" />
-              {language === 'en' ? 'Groups Requesting Freelancers' : 'مجموعات تطلب مستقلين'}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {openOffers.lookingForFreelancers.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} />
-              ))}
-            </div>
-          </div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => navigate('/groups')}
+                    className="flex-1"
+                  >
+                    <Eye className="h-4 w-4 mr-2" />
+                    {language === 'ar' ? 'عرض' : 'View'}
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    onClick={() => navigate('/groups')}
+                    className="flex-1"
+                  >
+                    <Users className="h-4 w-4 mr-2" />
+                    {language === 'ar' ? 'انضمام' : 'Join'}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Button 
+            onClick={() => navigate('/groups')}
+            className="bg-blue-600 hover:bg-blue-700"
+          >
+            {language === 'ar' ? 'عرض جميع المجموعات' : 'View All Groups'}
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
         </div>
       </div>
     </section>
