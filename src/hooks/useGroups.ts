@@ -17,6 +17,14 @@ export interface Group {
   member_count?: number;
 }
 
+export interface CreateGroupData {
+  name: string;
+  description?: string;
+  type: string;
+  service_gateway: string;
+  business_objective?: string;
+}
+
 export const useGroups = () => {
   const [groups, setGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +47,7 @@ export const useGroups = () => {
     }
   };
 
-  const createGroup = async (groupData: Partial<Group>) => {
+  const createGroup = async (groupData: CreateGroupData) => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
@@ -50,7 +58,11 @@ export const useGroups = () => {
       const { data, error } = await supabase
         .from('groups')
         .insert([{
-          ...groupData,
+          name: groupData.name,
+          description: groupData.description || '',
+          type: groupData.type,
+          service_gateway: groupData.service_gateway,
+          business_objective: groupData.business_objective || '',
           creator_id: user.id,
           status: 'active'
         }])

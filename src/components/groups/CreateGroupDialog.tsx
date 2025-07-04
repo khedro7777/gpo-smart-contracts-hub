@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useGroups } from '@/hooks/useGroups';
+import { useGroups, CreateGroupData } from '@/hooks/useGroups';
 import { Plus } from 'lucide-react';
 
 const CreateGroupDialog = () => {
@@ -15,7 +15,7 @@ const CreateGroupDialog = () => {
   const { createGroup } = useGroups();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateGroupData>({
     name: '',
     description: '',
     type: '',
@@ -25,6 +25,12 @@ const CreateGroupDialog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.name || !formData.type || !formData.service_gateway) {
+      toast.error(language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+      return;
+    }
+    
     setLoading(true);
     
     const result = await createGroup(formData);
@@ -58,7 +64,7 @@ const CreateGroupDialog = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">
-              {language === 'ar' ? 'اسم المجموعة' : 'Group Name'}
+              {language === 'ar' ? 'اسم المجموعة' : 'Group Name'} *
             </Label>
             <Input
               id="name"
@@ -70,7 +76,7 @@ const CreateGroupDialog = () => {
           
           <div className="space-y-2">
             <Label htmlFor="type">
-              {language === 'ar' ? 'نوع المجموعة' : 'Group Type'}
+              {language === 'ar' ? 'نوع المجموعة' : 'Group Type'} *
             </Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({...formData, type: value})}>
               <SelectTrigger>
@@ -87,7 +93,7 @@ const CreateGroupDialog = () => {
 
           <div className="space-y-2">
             <Label htmlFor="service_gateway">
-              {language === 'ar' ? 'بوابة الخدمة' : 'Service Gateway'}
+              {language === 'ar' ? 'بوابة الخدمة' : 'Service Gateway'} *
             </Label>
             <Select value={formData.service_gateway} onValueChange={(value) => setFormData({...formData, service_gateway: value})}>
               <SelectTrigger>

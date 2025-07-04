@@ -86,6 +86,53 @@ export type Database = {
           },
         ]
       }
+      admin_elections: {
+        Row: {
+          candidates: string[]
+          created_at: string
+          elected_admins: string[] | null
+          group_id: string
+          id: string
+          phase: string
+          status: string
+          title: string
+          updated_at: string
+          votes: Json | null
+        }
+        Insert: {
+          candidates?: string[]
+          created_at?: string
+          elected_admins?: string[] | null
+          group_id: string
+          id?: string
+          phase: string
+          status?: string
+          title: string
+          updated_at?: string
+          votes?: Json | null
+        }
+        Update: {
+          candidates?: string[]
+          created_at?: string
+          elected_admins?: string[] | null
+          group_id?: string
+          id?: string
+          phase?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          votes?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_elections_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       admin_permissions: {
         Row: {
           action: string | null
@@ -328,6 +375,38 @@ export type Database = {
             columns: ["role_id"]
             isOneToOne: false
             referencedRelation: "admin_roles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_votes: {
+        Row: {
+          created_at: string
+          election_id: string
+          id: string
+          selected_admins: string[]
+          voter_id: string
+        }
+        Insert: {
+          created_at?: string
+          election_id: string
+          id?: string
+          selected_admins: string[]
+          voter_id: string
+        }
+        Update: {
+          created_at?: string
+          election_id?: string
+          id?: string
+          selected_admins?: string[]
+          voter_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_votes_election_id_fkey"
+            columns: ["election_id"]
+            isOneToOne: false
+            referencedRelation: "admin_elections"
             referencedColumns: ["id"]
           },
         ]
@@ -860,6 +939,56 @@ export type Database = {
           },
         ]
       }
+      freelancer_offers: {
+        Row: {
+          created_at: string
+          delivery_time: string
+          description: string
+          freelancer_id: string
+          group_id: string | null
+          id: string
+          price: number
+          skills_required: string[] | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          delivery_time: string
+          description: string
+          freelancer_id: string
+          group_id?: string | null
+          id?: string
+          price: number
+          skills_required?: string[] | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          delivery_time?: string
+          description?: string
+          freelancer_id?: string
+          group_id?: string | null
+          id?: string
+          price?: number
+          skills_required?: string[] | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "freelancer_offers_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       freelancers: {
         Row: {
           assessment_score: number | null
@@ -967,12 +1096,90 @@ export type Database = {
           },
         ]
       }
+      group_actions_log: {
+        Row: {
+          action: string
+          admin_id: string
+          created_at: string
+          group_id: string
+          id: string
+          reason: string | null
+          target_user_id: string | null
+        }
+        Insert: {
+          action: string
+          admin_id: string
+          created_at?: string
+          group_id: string
+          id?: string
+          reason?: string | null
+          target_user_id?: string | null
+        }
+        Update: {
+          action?: string
+          admin_id?: string
+          created_at?: string
+          group_id?: string
+          id?: string
+          reason?: string | null
+          target_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_actions_log_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_join_requests: {
+        Row: {
+          created_at: string
+          group_id: string
+          id: string
+          points_required: number
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          group_id: string
+          id?: string
+          points_required?: number
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          group_id?: string
+          id?: string
+          points_required?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_join_requests_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       group_members: {
         Row: {
           group_id: string | null
           id: string
           joined_at: string | null
+          points_held: number | null
           role: string | null
+          status: string | null
           user_id: string | null
           voting_weight: number | null
         }
@@ -980,7 +1187,9 @@ export type Database = {
           group_id?: string | null
           id?: string
           joined_at?: string | null
+          points_held?: number | null
           role?: string | null
+          status?: string | null
           user_id?: string | null
           voting_weight?: number | null
         }
@@ -988,7 +1197,9 @@ export type Database = {
           group_id?: string | null
           id?: string
           joined_at?: string | null
+          points_held?: number | null
           role?: string | null
+          status?: string | null
           user_id?: string | null
           voting_weight?: number | null
         }
@@ -1004,46 +1215,67 @@ export type Database = {
       }
       groups: {
         Row: {
+          admins: string[] | null
           business_objective: string | null
           created_at: string | null
           creator_id: string | null
+          current_phase: string | null
           description: string | null
           id: string
           jurisdiction: string | null
           legal_framework: string | null
+          max_members: number | null
+          min_members: number | null
           name: string
+          points_required: number | null
+          round_number: number | null
           service_gateway: string
           status: string | null
           type: string
           updated_at: string | null
+          visibility: string | null
         }
         Insert: {
+          admins?: string[] | null
           business_objective?: string | null
           created_at?: string | null
           creator_id?: string | null
+          current_phase?: string | null
           description?: string | null
           id?: string
           jurisdiction?: string | null
           legal_framework?: string | null
+          max_members?: number | null
+          min_members?: number | null
           name: string
+          points_required?: number | null
+          round_number?: number | null
           service_gateway: string
           status?: string | null
           type: string
           updated_at?: string | null
+          visibility?: string | null
         }
         Update: {
+          admins?: string[] | null
           business_objective?: string | null
           created_at?: string | null
           creator_id?: string | null
+          current_phase?: string | null
           description?: string | null
           id?: string
           jurisdiction?: string | null
           legal_framework?: string | null
+          max_members?: number | null
+          min_members?: number | null
           name?: string
+          points_required?: number | null
+          round_number?: number | null
           service_gateway?: string
           status?: string | null
           type?: string
           updated_at?: string | null
+          visibility?: string | null
         }
         Relationships: []
       }
@@ -1070,30 +1302,45 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
+          bio: string | null
           company_name: string | null
           created_at: string | null
+          experience_years: number | null
           full_name: string | null
           id: string
           kyc_status: string | null
+          phone: string | null
           role: string | null
+          skills: string[] | null
           updated_at: string | null
         }
         Insert: {
+          address?: string | null
+          bio?: string | null
           company_name?: string | null
           created_at?: string | null
+          experience_years?: number | null
           full_name?: string | null
           id: string
           kyc_status?: string | null
+          phone?: string | null
           role?: string | null
+          skills?: string[] | null
           updated_at?: string | null
         }
         Update: {
+          address?: string | null
+          bio?: string | null
           company_name?: string | null
           created_at?: string | null
+          experience_years?: number | null
           full_name?: string | null
           id?: string
           kyc_status?: string | null
+          phone?: string | null
           role?: string | null
+          skills?: string[] | null
           updated_at?: string | null
         }
         Relationships: []
@@ -1141,6 +1388,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      role_capabilities: {
+        Row: {
+          capability: string
+          created_at: string | null
+          description: string | null
+          id: string
+          role: Database["public"]["Enums"]["user_role"]
+        }
+        Insert: {
+          capability: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["user_role"]
+        }
+        Update: {
+          capability?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"]
+        }
+        Relationships: []
       }
       strapi_api_token_permissions: {
         Row: {
@@ -1655,6 +1926,59 @@ export type Database = {
         }
         Relationships: []
       }
+      supplier_offers: {
+        Row: {
+          company_name: string
+          created_at: string
+          delivery_terms: string | null
+          group_id: string | null
+          id: string
+          offer_description: string
+          payment_terms: string | null
+          price_details: Json | null
+          status: string
+          supplier_id: string
+          updated_at: string
+          valid_until: string | null
+        }
+        Insert: {
+          company_name: string
+          created_at?: string
+          delivery_terms?: string | null
+          group_id?: string | null
+          id?: string
+          offer_description: string
+          payment_terms?: string | null
+          price_details?: Json | null
+          status?: string
+          supplier_id: string
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          delivery_terms?: string | null
+          group_id?: string | null
+          id?: string
+          offer_description?: string
+          payment_terms?: string | null
+          price_details?: Json | null
+          status?: string
+          supplier_id?: string
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_offers_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suppliers: {
         Row: {
           compliance_rating: number | null
@@ -1991,40 +2315,126 @@ export type Database = {
           },
         ]
       }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          expires_at: string | null
+          granted_at: string | null
+          granted_by: string | null
+          id: string
+          is_active: boolean | null
+          role: Database["public"]["Enums"]["user_role"]
+          role_data: Json | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at?: string | null
+          granted_at?: string | null
+          granted_by?: string | null
+          id?: string
+          is_active?: boolean | null
+          role?: Database["public"]["Enums"]["user_role"]
+          role_data?: Json | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string | null
+          granted_at?: string | null
+          granted_by?: string | null
+          id?: string
+          is_active?: boolean | null
+          role?: Database["public"]["Enums"]["user_role"]
+          role_data?: Json | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       votes: {
         Row: {
           choice: string
           created_at: string | null
           id: string
-          proposal_id: string | null
           reason: string | null
           user_id: string | null
+          voting_session_id: string | null
           weight: number | null
         }
         Insert: {
           choice: string
           created_at?: string | null
           id?: string
-          proposal_id?: string | null
           reason?: string | null
           user_id?: string | null
+          voting_session_id?: string | null
           weight?: number | null
         }
         Update: {
           choice?: string
           created_at?: string | null
           id?: string
-          proposal_id?: string | null
           reason?: string | null
           user_id?: string | null
+          voting_session_id?: string | null
           weight?: number | null
         }
         Relationships: [
           {
-            foreignKeyName: "votes_proposal_id_fkey"
-            columns: ["proposal_id"]
+            foreignKeyName: "votes_voting_session_id_fkey"
+            columns: ["voting_session_id"]
             isOneToOne: false
-            referencedRelation: "proposals"
+            referencedRelation: "voting_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      voting_sessions: {
+        Row: {
+          created_at: string
+          created_by: string
+          deadline: string | null
+          description: string | null
+          group_id: string | null
+          id: string
+          options: Json
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          deadline?: string | null
+          description?: string | null
+          group_id?: string | null
+          id?: string
+          options: Json
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          deadline?: string | null
+          description?: string | null
+          group_id?: string | null
+          id?: string
+          options?: Json
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voting_sessions_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
             referencedColumns: ["id"]
           },
         ]
@@ -2034,10 +2444,31 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_primary_role: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["user_role"]
+      }
+      get_user_roles: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["user_role"][]
+      }
+      has_role: {
+        Args: {
+          _user_id: string
+          _role: Database["public"]["Enums"]["user_role"]
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      user_role:
+        | "user"
+        | "company"
+        | "freelancer"
+        | "supervisor"
+        | "supplier"
+        | "arbitrator"
+        | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2152,6 +2583,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_role: [
+        "user",
+        "company",
+        "freelancer",
+        "supervisor",
+        "supplier",
+        "arbitrator",
+        "admin",
+      ],
+    },
   },
 } as const
