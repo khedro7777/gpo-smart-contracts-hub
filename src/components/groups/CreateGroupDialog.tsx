@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGroups, CreateGroupData } from '@/hooks/useGroups';
 import { Plus } from 'lucide-react';
+import { toast } from 'sonner';
 
 const CreateGroupDialog = () => {
   const { language } = useLanguage();
