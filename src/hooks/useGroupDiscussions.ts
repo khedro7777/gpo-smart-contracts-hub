@@ -25,10 +25,7 @@ export const useGroupDiscussions = (groupId?: string) => {
 
     try {
       const { data, error } = await supabase
-        .from('group_discussions')
-        .select('*')
-        .eq('group_id', groupId)
-        .order('created_at', { ascending: false });
+        .rpc('get_group_discussions', { p_group_id: groupId });
 
       if (error) throw error;
       setDiscussions(data || []);
@@ -53,16 +50,13 @@ export const useGroupDiscussions = (groupId?: string) => {
       }
 
       const { data, error } = await supabase
-        .from('group_discussions')
-        .insert([{
-          group_id: groupId,
-          user_id: user.id,
-          message: message,
-          message_type: messageType,
-          parent_id: parentId || null
-        }])
-        .select()
-        .single();
+        .rpc('create_group_discussion', {
+          p_group_id: groupId,
+          p_user_id: user.id,
+          p_message: message,
+          p_message_type: messageType,
+          p_parent_id: parentId || null
+        });
 
       if (error) throw error;
 
@@ -78,27 +72,6 @@ export const useGroupDiscussions = (groupId?: string) => {
 
   useEffect(() => {
     fetchDiscussions();
-    
-    // Set up real-time subscription
-    const channel = supabase
-      .channel(`group_discussions:${groupId}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'group_discussions',
-          filter: `group_id=eq.${groupId}`
-        },
-        () => {
-          fetchDiscussions();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, [groupId]);
 
   return {

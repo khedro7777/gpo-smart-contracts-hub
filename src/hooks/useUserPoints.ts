@@ -36,10 +36,7 @@ export const useUserPoints = () => {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from('user_points')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
+        .rpc('get_user_points', { p_user_id: user.id });
 
       if (error && error.code !== 'PGRST116') {
         throw error;
@@ -60,11 +57,7 @@ export const useUserPoints = () => {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from('point_transactions')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(50);
+        .rpc('get_point_transactions', { p_user_id: user.id });
 
       if (error) throw error;
       setTransactions(data || []);

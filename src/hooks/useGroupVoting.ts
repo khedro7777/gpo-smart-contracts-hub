@@ -41,10 +41,7 @@ export const useGroupVoting = (groupId?: string) => {
 
     try {
       const { data, error } = await supabase
-        .from('group_voting_sessions')
-        .select('*')
-        .eq('group_id', groupId)
-        .order('created_at', { ascending: false });
+        .rpc('get_group_voting_sessions', { p_group_id: groupId });
 
       if (error) throw error;
       setVotingSessions(data || []);
@@ -62,9 +59,7 @@ export const useGroupVoting = (groupId?: string) => {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from('group_votes')
-        .select('*')
-        .eq('voter_id', user.id);
+        .rpc('get_user_votes', { p_user_id: user.id });
 
       if (error) throw error;
       setUserVotes(data || []);
@@ -91,21 +86,18 @@ export const useGroupVoting = (groupId?: string) => {
       }
 
       const { data, error } = await supabase
-        .from('group_voting_sessions')
-        .insert([{
-          group_id: groupId,
-          title: sessionData.title,
-          description: sessionData.description || null,
-          type: sessionData.type,
-          phase: sessionData.phase,
-          max_selections: sessionData.maxSelections || 1,
-          candidates: sessionData.candidates || [],
-          options: sessionData.options || {},
-          created_by: user.id,
-          deadline: sessionData.deadline || null
-        }])
-        .select()
-        .single();
+        .rpc('create_voting_session', {
+          p_group_id: groupId,
+          p_title: sessionData.title,
+          p_description: sessionData.description || null,
+          p_type: sessionData.type,
+          p_phase: sessionData.phase,
+          p_max_selections: sessionData.maxSelections || 1,
+          p_candidates: sessionData.candidates || [],
+          p_options: sessionData.options || {},
+          p_created_by: user.id,
+          p_deadline: sessionData.deadline || null
+        });
 
       if (error) throw error;
 
@@ -128,15 +120,12 @@ export const useGroupVoting = (groupId?: string) => {
       }
 
       const { data, error } = await supabase
-        .from('group_votes')
-        .insert([{
-          voting_session_id: sessionId,
-          voter_id: user.id,
-          selections: selections,
-          choice: choice || null
-        }])
-        .select()
-        .single();
+        .rpc('cast_vote', {
+          p_voting_session_id: sessionId,
+          p_voter_id: user.id,
+          p_selections: selections,
+          p_choice: choice || null
+        });
 
       if (error) throw error;
 
