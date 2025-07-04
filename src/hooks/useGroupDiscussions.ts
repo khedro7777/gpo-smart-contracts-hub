@@ -28,7 +28,7 @@ export const useGroupDiscussions = (groupId?: string) => {
         .rpc('get_group_discussions', { p_group_id: groupId });
 
       if (error) throw error;
-      setDiscussions(data || []);
+      setDiscussions((data as GroupDiscussion[]) || []);
     } catch (error) {
       console.error('Error fetching discussions:', error);
       toast.error(language === 'ar' ? 'خطأ في تحميل المناقشات' : 'Error loading discussions');

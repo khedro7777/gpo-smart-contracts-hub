@@ -42,7 +42,9 @@ export const useUserPoints = () => {
         throw error;
       }
 
-      setUserPoints(data);
+      // The RPC function returns an array, but we expect a single record
+      const pointsData = Array.isArray(data) && data.length > 0 ? data[0] : null;
+      setUserPoints(pointsData as UserPoints | null);
     } catch (error) {
       console.error('Error fetching user points:', error);
       toast.error(language === 'ar' ? 'خطأ في تحميل النقاط' : 'Error loading points');
@@ -60,7 +62,7 @@ export const useUserPoints = () => {
         .rpc('get_point_transactions', { p_user_id: user.id });
 
       if (error) throw error;
-      setTransactions(data || []);
+      setTransactions((data as PointTransaction[]) || []);
     } catch (error) {
       console.error('Error fetching transactions:', error);
     }

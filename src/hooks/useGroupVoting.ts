@@ -44,7 +44,7 @@ export const useGroupVoting = (groupId?: string) => {
         .rpc('get_group_voting_sessions', { p_group_id: groupId });
 
       if (error) throw error;
-      setVotingSessions(data || []);
+      setVotingSessions((data as GroupVotingSession[]) || []);
     } catch (error) {
       console.error('Error fetching voting sessions:', error);
       toast.error(language === 'ar' ? 'خطأ في تحميل جلسات التصويت' : 'Error loading voting sessions');
@@ -62,7 +62,7 @@ export const useGroupVoting = (groupId?: string) => {
         .rpc('get_user_votes', { p_user_id: user.id });
 
       if (error) throw error;
-      setUserVotes(data || []);
+      setUserVotes((data as GroupVote[]) || []);
     } catch (error) {
       console.error('Error fetching user votes:', error);
     }

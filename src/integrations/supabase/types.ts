@@ -2444,13 +2444,114 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cast_vote: {
+        Args: {
+          p_voting_session_id: string
+          p_voter_id: string
+          p_selections: string[]
+          p_choice?: string
+        }
+        Returns: string
+      }
+      create_group_discussion: {
+        Args: {
+          p_group_id: string
+          p_user_id: string
+          p_message: string
+          p_message_type: string
+          p_parent_id?: string
+        }
+        Returns: string
+      }
+      create_voting_session: {
+        Args: {
+          p_group_id: string
+          p_title: string
+          p_description: string
+          p_type: string
+          p_phase: string
+          p_max_selections: number
+          p_candidates: string[]
+          p_options: Json
+          p_created_by: string
+          p_deadline?: string
+        }
+        Returns: string
+      }
+      get_group_discussions: {
+        Args: { p_group_id: string }
+        Returns: {
+          id: string
+          group_id: string
+          user_id: string
+          message: string
+          message_type: string
+          parent_id: string
+          created_at: string
+          updated_at: string
+        }[]
+      }
+      get_group_voting_sessions: {
+        Args: { p_group_id: string }
+        Returns: {
+          id: string
+          group_id: string
+          title: string
+          description: string
+          type: string
+          phase: string
+          max_selections: number
+          candidates: string[]
+          options: Json
+          status: string
+          created_by: string
+          created_at: string
+          deadline: string
+          results: Json
+        }[]
+      }
+      get_point_transactions: {
+        Args: { p_user_id: string }
+        Returns: {
+          id: string
+          user_id: string
+          group_id: string
+          amount: number
+          type: string
+          description: string
+          created_at: string
+        }[]
+      }
       get_primary_role: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["user_role"]
       }
+      get_user_points: {
+        Args: { p_user_id: string }
+        Returns: {
+          id: string
+          user_id: string
+          total_points: number
+          held_points: number
+          available_points: number
+          created_at: string
+          updated_at: string
+        }[]
+      }
       get_user_roles: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["user_role"][]
+      }
+      get_user_votes: {
+        Args: { p_user_id: string }
+        Returns: {
+          id: string
+          voting_session_id: string
+          voter_id: string
+          selections: string[]
+          choice: string
+          created_at: string
+        }[]
       }
       has_role: {
         Args: {
