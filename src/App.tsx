@@ -16,6 +16,13 @@ import VotingCenter from './pages/dashboard/VotingCenter';
 import GPOWorkspace from './components/gpo/GPOWorkspace';
 import GroupRoomPage from './pages/GroupRoomPage';
 
+// Gateway Imports
+import GatewaysPage from './pages/GatewaysPage';
+import ProcurementGateway from './components/gateways/ProcurementGateway';
+import MarketingGateway from './components/gateways/MarketingGateway';
+import CompanyFormationGateway from './components/gateways/CompanyFormationGateway';
+import FreelancerGateway from './components/gateways/FreelancerGateway';
+
 function App() {
   return (
     <QueryClientProvider client={new QueryClient({
@@ -41,6 +48,13 @@ function App() {
               <Route path="/voting" element={<VotingCenter />} />
               <Route path="/gpo" element={<GPOWorkspace activeGroups={12} totalContracts={45} monthlyVolume={2500000} successRate={94} />} />
               <Route path="/groups/:groupId/room" element={<GroupRoomPage />} />
+              
+              {/* Gateway Routes */}
+              <Route path="/gateways" element={<GatewaysPage />} />
+              <Route path="/gateways/procurement" element={<ProcurementGateway />} />
+              <Route path="/gateways/marketing" element={<MarketingGateway />} />
+              <Route path="/gateways/company-formation" element={<CompanyFormationGateway />} />
+              <Route path="/gateways/freelancer" element={<FreelancerGateway />} />
             </Routes>
           </BrowserRouter>
         </div>
