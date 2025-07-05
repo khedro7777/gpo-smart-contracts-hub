@@ -4,7 +4,6 @@ import DashboardSidebar from './DashboardSidebar';
 import { Toaster } from '@/components/ui/sonner';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
-import GPOMachine from '../GPOMachine';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -34,8 +33,6 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, role }) => 
           {children}
         </main>
       </div>
-      
-      <GPOMachine />
     </div>
   );
 };
