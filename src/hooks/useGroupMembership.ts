@@ -56,8 +56,8 @@ export const useGroupMembership = (groupId?: string) => {
           id: membershipData.id,
           group_id: membershipData.group_id || '',
           user_id: membershipData.user_id || '',
-          role: membershipData.role || 'member',
-          status: membershipData.status || 'pending',
+          role: (membershipData.role as 'member' | 'admin' | 'creator') || 'member',
+          status: (membershipData.status as 'active' | 'pending' | 'awaiting_approval') || 'pending',
           approval_status: 'approved', // Default value since it's not in the database yet
           joined_at: membershipData.joined_at || new Date().toISOString(),
         };
