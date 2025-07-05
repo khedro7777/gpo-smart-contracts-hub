@@ -50,7 +50,19 @@ export const useGroupMembership = (groupId?: string) => {
         throw membershipError;
       }
 
-      setMembership(membershipData);
+      // Transform the data to match our interface
+      if (membershipData) {
+        const transformedMembership: GroupMembership = {
+          id: membershipData.id,
+          group_id: membershipData.group_id || '',
+          user_id: membershipData.user_id || '',
+          role: membershipData.role || 'member',
+          status: membershipData.status || 'pending',
+          approval_status: 'approved', // Default value since it's not in the database yet
+          joined_at: membershipData.joined_at || new Date().toISOString(),
+        };
+        setMembership(transformedMembership);
+      }
     } catch (error) {
       console.error('Error fetching group membership:', error);
       toast.error(language === 'ar' ? 'خطأ في تحميل بيانات المجموعة' : 'Error loading group data');
@@ -114,8 +126,7 @@ export const useGroupMembership = (groupId?: string) => {
           group_id: groupId,
           user_id: user.id,
           role: 'member',
-          status: 'awaiting_approval',
-          approval_status: 'pending'
+          status: 'awaiting_approval'
         }]);
 
       if (error) throw error;
