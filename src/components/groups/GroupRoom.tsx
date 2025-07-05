@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Group } from '@/hooks/useGroups';
 import { 
@@ -13,11 +14,17 @@ import {
   AlertTriangle, 
   Settings,
   TrendingUp,
-  Clock
+  Clock,
+  Shield,
+  UserPlus,
+  Gavel,
+  History
 } from 'lucide-react';
 import GroupDiscussions from './GroupDiscussions';
 import GroupVoting from './GroupVoting';
 import AdminPanel from './AdminPanel';
+import GroupGovernance from './GroupGovernance';
+import JoinGroupDialog from './JoinGroupDialog';
 
 interface GroupRoomProps {
   group: Group;
@@ -35,6 +42,7 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
       case 'active': return 'bg-green-100 text-green-800';
       case 'negotiation': return 'bg-blue-100 text-blue-800';
       case 'contract': return 'bg-purple-100 text-purple-800';
+      case 'completed': return 'bg-gray-100 text-gray-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -45,10 +53,12 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
       case 'active': return language === 'ar' ? 'نشط' : 'Active';
       case 'negotiation': return language === 'ar' ? 'التفاوض' : 'Negotiation';
       case 'contract': return language === 'ar' ? 'العقد' : 'Contract';
+      case 'completed': return language === 'ar' ? 'مكتمل' : 'Completed';
       default: return phase;
     }
   };
 
+  // Show join dialog for non-members
   if (membershipStatus === 'awaiting_approval') {
     return (
       <div className="max-w-4xl mx-auto p-6">
@@ -85,7 +95,14 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
             </Badge>
             {userRole === 'admin' && (
               <Badge variant="outline" className="text-blue-600">
+                <Shield className="h-3 w-3 mr-1" />
                 {language === 'ar' ? 'مشرف' : 'Admin'}
+              </Badge>
+            )}
+            {userRole === 'creator' && (
+              <Badge variant="outline" className="text-purple-600">
+                <Shield className="h-3 w-3 mr-1" />
+                {language === 'ar' ? 'منشئ' : 'Creator'}
               </Badge>
             )}
           </div>
@@ -153,10 +170,14 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-8">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <TrendingUp className="h-4 w-4" />
             {language === 'ar' ? 'نظرة عامة' : 'Overview'}
+          </TabsTrigger>
+          <TabsTrigger value="governance" className="flex items-center gap-2">
+            <Gavel className="h-4 w-4" />
+            {language === 'ar' ? 'الحوكمة' : 'Governance'}
           </TabsTrigger>
           <TabsTrigger value="discussions" className="flex items-center gap-2">
             <MessageSquare className="h-4 w-4" />
@@ -174,7 +195,11 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
             <Users className="h-4 w-4" />
             {language === 'ar' ? 'الأعضاء' : 'Members'}
           </TabsTrigger>
-          {userRole === 'admin' && (
+          <TabsTrigger value="history" className="flex items-center gap-2">
+            <History className="h-4 w-4" />
+            {language === 'ar' ? 'التاريخ' : 'History'}
+          </TabsTrigger>
+          {(userRole === 'admin' || userRole === 'creator') && (
             <TabsTrigger value="admin" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
               {language === 'ar' ? 'الإدارة' : 'Admin'}
@@ -237,6 +262,14 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
           </div>
         </TabsContent>
 
+        <TabsContent value="governance" className="mt-6">
+          <GroupGovernance 
+            groupId={group.id} 
+            userRole={userRole}
+            currentPhase={group.current_phase || 'initial'}
+          />
+        </TabsContent>
+
         <TabsContent value="discussions" className="mt-6">
           <GroupDiscussions groupId={group.id} />
         </TabsContent>
@@ -255,7 +288,7 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
             <CardContent>
               <p className="text-gray-600">
                 {language === 'ar' 
-                  ? 'سيتم إضافة نظام إدارة الملفات قريباً'
+                  ? 'سيتمإضافة نظام إدارة الملفات قريباً'
                   : 'File management system coming soon'
                 }
               </p>
@@ -281,7 +314,25 @@ const GroupRoom: React.FC<GroupRoomProps> = ({ group, userRole, membershipStatus
           </Card>
         </TabsContent>
 
-        {userRole === 'admin' && (
+        <TabsContent value="history" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                {language === 'ar' ? 'تاريخ المجموعة' : 'Group History'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'ar' 
+                  ? 'سجل الأنشطة والقرارات قيد التطوير'
+                  : 'Activity and decisions history under development'
+                }
+              </p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {(userRole === 'admin' || userRole === 'creator') && (
           <TabsContent value="admin" className="mt-6">
             <AdminPanel groupId={group.id} />
           </TabsContent>
