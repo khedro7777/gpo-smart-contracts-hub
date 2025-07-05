@@ -14,7 +14,8 @@ import {
   Users, 
   Globe,
   Star,
-  ArrowRight
+  ArrowRight,
+  DollarSign
 } from 'lucide-react';
 
 const GatewaysPage = () => {
