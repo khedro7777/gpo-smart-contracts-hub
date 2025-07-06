@@ -5,45 +5,20 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
-import { Users, Clock, TrendingUp, CheckCircle } from 'lucide-react';
-
-interface ActiveGroup {
-  id: string;
-  name: string;
-  description: string;
-  currentPhase: string;
-  memberCount: number;
-  status: string;
-  gatewayType: string;
-  maxMembers?: number;
-  pointsRequired?: number;
-  kycRequired?: boolean;
-}
+import { Users, Clock, TrendingUp } from 'lucide-react';
+import { ActiveGroup, GatewayConfig } from '@/types/gateway';
 
 interface GatewayPortalProps {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  color: string;
-  href: string;
+  config: GatewayConfig;
   activeGroups: ActiveGroup[];
-  requiresKyc?: boolean;
-  requiresPoints?: boolean;
-  requiresMcp?: boolean;
 }
 
 const GatewayPortal: React.FC<GatewayPortalProps> = ({
-  title,
-  description,
-  icon: Icon,
-  color,
-  href,
-  activeGroups,
-  requiresKyc = false,
-  requiresPoints = false,
-  requiresMcp = false
+  config,
+  activeGroups
 }) => {
   const { language } = useLanguage();
+  const Icon = config.icon;
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -79,30 +54,30 @@ const GatewayPortal: React.FC<GatewayPortalProps> = ({
   return (
     <div className="space-y-6">
       {/* Portal Header */}
-      <Card className={`border-l-4 ${color} hover:shadow-lg transition-shadow`}>
+      <Card className={`border-l-4 ${config.color} hover:shadow-lg transition-shadow`}>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className={`p-3 rounded-lg ${color.replace('border-l-', 'bg-').replace('-500', '-100')} text-white`}>
+              <div className={`p-3 rounded-lg ${config.color.replace('border-l-', 'bg-').replace('-500', '-100')} text-white`}>
                 <Icon className="h-8 w-8" />
               </div>
               <div>
-                <CardTitle className="text-2xl">{title}</CardTitle>
-                <p className="text-gray-600 mt-2">{description}</p>
+                <CardTitle className="text-2xl">{config.title}</CardTitle>
+                <p className="text-gray-600 mt-2">{config.description}</p>
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              {requiresKyc && (
+              {config.requiresKyc && (
                 <Badge variant="outline" className="text-orange-600">
                   {language === 'ar' ? 'يتطلب KYC' : 'KYC Required'}
                 </Badge>
               )}
-              {requiresPoints && (
+              {config.requiresPoints && (
                 <Badge variant="outline" className="text-blue-600">
                   {language === 'ar' ? 'يتطلب نقاط' : 'Points Required'}
                 </Badge>
               )}
-              {requiresMcp && (
+              {config.requiresMcp && (
                 <Badge variant="outline" className="text-green-600">
                   {language === 'ar' ? 'اختبار MCP' : 'MCP Exam'}
                 </Badge>
@@ -111,15 +86,8 @@ const GatewayPortal: React.FC<GatewayPortalProps> = ({
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-600">
-              {activeGroups.length} {language === 'ar' ? 'مجموعة نشطة' : 'Active Groups'}
-            </div>
-            <Link to={href}>
-              <Button>
-                {language === 'ar' ? 'دخول البوابة' : 'Enter Portal'}
-              </Button>
-            </Link>
+          <div className="text-sm text-gray-600">
+            {activeGroups.length} {language === 'ar' ? 'مجموعة نشطة' : 'Active Groups'}
           </div>
         </CardContent>
       </Card>
@@ -190,12 +158,10 @@ const GatewayPortal: React.FC<GatewayPortalProps> = ({
 
       {activeGroups.length > 6 && (
         <div className="text-center">
-          <Link to={href}>
-            <Button variant="outline">
-              {language === 'ar' ? 'عرض جميع المجموعات' : 'View All Groups'} 
-              ({activeGroups.length})
-            </Button>
-          </Link>
+          <Button variant="outline">
+            {language === 'ar' ? 'عرض جميع المجموعات' : 'View All Groups'} 
+            ({activeGroups.length})
+          </Button>
         </div>
       )}
     </div>

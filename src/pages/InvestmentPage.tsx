@@ -1,22 +1,26 @@
-// ============================================
-// 💰 INVESTMENT PAGE WRAPPER
-// ============================================
-// Purpose: Main page wrapper for investment gateway functionality
-// Used in: /investment route
-// Features: Investment opportunities, portfolio management, company formation
-// Location: Investment section of the platform
-// Dependencies: InvestmentGateway component, Layout wrapper
-// ============================================
 
 import React from 'react';
-import Layout from '@/components/layout/Layout';
-import InvestmentGateway from '@/components/investment/InvestmentGateway';
+import PremiumGate from '@/components/premium/PremiumGate';
+import GatewayPortal from '@/components/gateways/GatewayPortal';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { gatewayConfigs, mockActiveGroups } from '@/config/gateways';
 
-const InvestmentPage: React.FC = () => {
+const InvestmentPage = () => {
+  const { language } = useLanguage();
+  const config = gatewayConfigs.find(g => g.id === 'investment')!;
+  const activeGroups = mockActiveGroups.investment;
+
   return (
-    <Layout>
-      <InvestmentGateway />
-    </Layout>
+    <PremiumGate feature={language === 'ar' ? 'بوابة الاستثمار' : 'Investment Gateway'}>
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto">
+          <GatewayPortal 
+            config={config}
+            activeGroups={activeGroups}
+          />
+        </div>
+      </div>
+    </PremiumGate>
   );
 };
 
