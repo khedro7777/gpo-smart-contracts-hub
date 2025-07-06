@@ -15,6 +15,7 @@ import GroupsPage from './pages/GroupsPage';
 import VotingCenter from './pages/dashboard/VotingCenter';
 import GPOWorkspace from './components/gpo/GPOWorkspace';
 import GroupRoomPage from './pages/GroupRoomPage';
+import InvestmentPage from './pages/InvestmentPage';
 
 // Gateway Imports
 import GatewaysPage from './pages/GatewaysPage';
@@ -55,6 +56,7 @@ function App() {
               <Route path="/gateways/marketing" element={<MarketingGateway />} />
               <Route path="/gateways/company-formation" element={<CompanyFormationGateway />} />
               <Route path="/gateways/freelancer" element={<FreelancerGateway />} />
+              <Route path="/gateways/investment" element={<InvestmentPage />} />
             </Routes>
           </BrowserRouter>
         </div>
