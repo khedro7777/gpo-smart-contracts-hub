@@ -11,6 +11,7 @@ import {
 import InvestmentOpportunityCard from './InvestmentOpportunityCard';
 import PortfolioSummary from './PortfolioSummary';
 import CreateInvestmentModal from './CreateInvestmentModal';
+import PremiumGate from '@/components/premium/PremiumGate';
 
 const InvestmentGateway: React.FC = () => {
   const { language } = useLanguage();
@@ -93,81 +94,83 @@ const InvestmentGateway: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-            <TrendingUp className="h-8 w-8 text-blue-600" />
-            {language === 'ar' ? 'بوابة الاستثمار' : 'Investment Gateway'}
-          </h1>
-          <p className="text-gray-600">
-            {language === 'ar' 
-              ? 'إنشاء وإدارة الفرص الاستثمارية والشراكات التجارية'
-              : 'Create and manage investment opportunities and business partnerships'
-            }
-          </p>
-        </div>
+    <PremiumGate feature={language === 'ar' ? 'بوابة الاستثمار' : 'Investment Gateway'}>
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
+              <TrendingUp className="h-8 w-8 text-blue-600" />
+              {language === 'ar' ? 'بوابة الاستثمار' : 'Investment Gateway'}
+            </h1>
+            <p className="text-gray-600">
+              {language === 'ar' 
+                ? 'إنشاء وإدارة الفرص الاستثمارية والشراكات التجارية'
+                : 'Create and manage investment opportunities and business partnerships'
+              }
+            </p>
+          </div>
 
-        {/* Navigation Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-6">
-            <TabsTrigger value="opportunities">
-              {language === 'ar' ? 'الفرص الاستثمارية' : 'Investment Opportunities'}
-            </TabsTrigger>
-            <TabsTrigger value="portfolio">
-              {language === 'ar' ? 'محفظتي' : 'My Portfolio'}
-            </TabsTrigger>
-            <TabsTrigger value="analytics">
-              {language === 'ar' ? 'التحليلات' : 'Analytics'}
-            </TabsTrigger>
-          </TabsList>
+          {/* Navigation Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="mb-6">
+              <TabsTrigger value="opportunities">
+                {language === 'ar' ? 'الفرص الاستثمارية' : 'Investment Opportunities'}
+              </TabsTrigger>
+              <TabsTrigger value="portfolio">
+                {language === 'ar' ? 'محفظتي' : 'My Portfolio'}
+              </TabsTrigger>
+              <TabsTrigger value="analytics">
+                {language === 'ar' ? 'التحليلات' : 'Analytics'}
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="opportunities">
-            <div className="space-y-6">
-              {/* Create Investment Button */}
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-semibold">
-                  {language === 'ar' ? 'الفرص الاستثمارية' : 'Investment Opportunities'}
+            <TabsContent value="opportunities">
+              <div className="space-y-6">
+                {/* Create Investment Button */}
+                <div className="flex justify-between items-center">
+                  <h3 className="text-xl font-semibold">
+                    {language === 'ar' ? 'الفرص الاستثمارية' : 'Investment Opportunities'}
+                  </h3>
+                  <CreateInvestmentModal onCreateInvestment={handleCreateInvestment} />
+                </div>
+
+                {/* Opportunities Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {investmentOpportunities.map((opportunity) => (
+                    <InvestmentOpportunityCard
+                      key={opportunity.id}
+                      opportunity={opportunity}
+                      onInvest={handleInvest}
+                      onViewDetails={handleViewDetails}
+                    />
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="portfolio">
+              <PortfolioSummary stats={portfolioStats} />
+            </TabsContent>
+
+            <TabsContent value="analytics">
+              <div className="text-center py-12">
+                <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  {language === 'ar' ? 'التحليلات قادمة قريباً' : 'Analytics Coming Soon'}
                 </h3>
-                <CreateInvestmentModal onCreateInvestment={handleCreateInvestment} />
+                <p className="text-gray-600">
+                  {language === 'ar' 
+                    ? 'تحليلات مفصلة لأداء الاستثمارات والعوائد'
+                    : 'Detailed analytics for investment performance and returns'
+                  }
+                </p>
               </div>
-
-              {/* Opportunities Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {investmentOpportunities.map((opportunity) => (
-                  <InvestmentOpportunityCard
-                    key={opportunity.id}
-                    opportunity={opportunity}
-                    onInvest={handleInvest}
-                    onViewDetails={handleViewDetails}
-                  />
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="portfolio">
-            <PortfolioSummary stats={portfolioStats} />
-          </TabsContent>
-
-          <TabsContent value="analytics">
-            <div className="text-center py-12">
-              <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {language === 'ar' ? 'التحليلات قادمة قريباً' : 'Analytics Coming Soon'}
-              </h3>
-              <p className="text-gray-600">
-                {language === 'ar' 
-                  ? 'تحليلات مفصلة لأداء الاستثمارات والعوائد'
-                  : 'Detailed analytics for investment performance and returns'
-                }
-              </p>
-            </div>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
-    </div>
+    </PremiumGate>
   );
 };
 

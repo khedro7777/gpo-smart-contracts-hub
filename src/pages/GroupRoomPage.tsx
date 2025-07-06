@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGroups } from '@/hooks/useGroups';
 import GroupRoom from '@/components/groups/GroupRoom';
+import PremiumGate from '@/components/premium/PremiumGate';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home } from 'lucide-react';
@@ -22,7 +23,6 @@ const GroupRoomPage = () => {
       const foundGroup = groups.find(g => g.id === groupId);
       if (foundGroup) {
         setGroup(foundGroup);
-        // Mock user role - in real app, this would come from database
         setUserRole('member');
         setMembershipStatus('active');
       }
@@ -87,26 +87,28 @@ const GroupRoomPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-6">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/groups')}
-            className="mb-4"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            {language === 'ar' ? 'العودة للمجموعات' : 'Back to Groups'}
-          </Button>
+    <PremiumGate feature={language === 'ar' ? 'غرفة المجموعة' : 'Group Room'}>
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate('/groups')}
+              className="mb-4"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              {language === 'ar' ? 'العودة للمجموعات' : 'Back to Groups'}
+            </Button>
+          </div>
+          
+          <GroupRoom 
+            group={group}
+            userRole={userRole}
+            membershipStatus={membershipStatus}
+          />
         </div>
-        
-        <GroupRoom 
-          group={group}
-          userRole={userRole}
-          membershipStatus={membershipStatus}
-        />
       </div>
-    </div>
+    </PremiumGate>
   );
 };
 
