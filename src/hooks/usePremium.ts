@@ -18,11 +18,18 @@ export const usePremium = () => {
 
   useEffect(() => {
     // Mock premium status - in real app, this would come from API
+    // Set to true for testing purposes, change to false to see upgrade prompts
     const mockPremiumStatus: PremiumStatus = {
-      isPremium: false, // Set to false to show upgrade prompts
-      tier: 'free',
-      expiresAt: null,
-      features: []
+      isPremium: true, // Set to true for testing, false to show upgrade prompts
+      tier: 'premium',
+      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+      features: [
+        'access_all_gateways',
+        'unlimited_groups',
+        'advanced_analytics',
+        'priority_support',
+        'api_integration'
+      ]
     };
     setPremiumStatus(mockPremiumStatus);
   }, []);

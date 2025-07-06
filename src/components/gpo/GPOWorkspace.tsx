@@ -1,41 +1,63 @@
 
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import QuickStatsGrid from './workspace/QuickStatsGrid';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+import PremiumGate from '@/components/premium/PremiumGate';
 import WorkspaceHeader from './workspace/WorkspaceHeader';
+import QuickStatsGrid from './workspace/QuickStatsGrid';
 import WorkspaceTabs from './workspace/WorkspaceTabs';
+import ActiveNegotiationsList from './workspace/ActiveNegotiationsList';
+import RecentActivitiesList from './workspace/RecentActivitiesList';
+import { 
+  Users, 
+  FileText, 
+  TrendingUp, 
+  DollarSign,
+  BarChart3,
+  Activity
+} from 'lucide-react';
 
-interface WorkspaceProps {
+interface GPOWorkspaceProps {
   activeGroups: number;
   totalContracts: number;
   monthlyVolume: number;
   successRate: number;
 }
 
-const GPOWorkspace: React.FC<WorkspaceProps> = ({
-  activeGroups = 12,
-  totalContracts = 45,
-  monthlyVolume = 2500000,
-  successRate = 94
+const GPOWorkspace: React.FC<GPOWorkspaceProps> = ({
+  activeGroups,
+  totalContracts,
+  monthlyVolume,
+  successRate
 }) => {
-  const { i18n } = useTranslation();
+  const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div className="min-h-screen bg-gray-50 p-3 sm:p-6">
-      <div className="max-w-7xl mx-auto">
-        <WorkspaceHeader />
-        
-        <QuickStatsGrid
-          activeGroups={activeGroups}
-          totalContracts={totalContracts}
-          monthlyVolume={monthlyVolume}
-          successRate={successRate}
-        />
-
-        <WorkspaceTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+    <PremiumGate feature={language === 'ar' ? 'GPO مساحة العمل' : 'GPO Workspace'}>
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto">
+          <WorkspaceHeader />
+          
+          <QuickStatsGrid 
+            activeGroups={activeGroups}
+            totalContracts={totalContracts}
+            monthlyVolume={monthlyVolume}
+            successRate={successRate}
+          />
+          
+          <WorkspaceTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <ActiveNegotiationsList />
+            <RecentActivitiesList />
+          </div>
+        </div>
       </div>
-    </div>
+    </PremiumGate>
   );
 };
 
