@@ -25,12 +25,13 @@ import {
   Zap,
   Award
 } from 'lucide-react';
+import { GatewayConfig, ActiveGroup } from '@/types/gateway';
 
 const ComprehensiveHomePage = () => {
   const { language, direction } = useLanguage();
 
   // Sample active groups data for each portal
-  const sampleGroups = {
+  const sampleGroups: Record<string, ActiveGroup[]> = {
     procurement: [
       {
         id: '1',
@@ -69,7 +70,7 @@ const ComprehensiveHomePage = () => {
         pointsRequired: 200
       }
     ],
-    companyFormation: [
+    'company-formation': [
       {
         id: '4',
         name: language === 'ar' ? 'تأسيس شركة تقنية في دبي' : 'Tech Company Formation in Dubai',
@@ -83,128 +84,140 @@ const ComprehensiveHomePage = () => {
     ]
   };
 
-  const gateways = [
+  const gateways: GatewayConfig[] = [
     {
+      id: 'procurement',
       title: language === 'ar' ? 'الشراء التعاوني' : 'Cooperative Purchasing',
       description: language === 'ar' ? 'الشراء الجماعي مع اتفاقيات إطار للحصول على أسعار أفضل' : 'Aggregated procurement with framework agreements for better prices',
       icon: ShoppingCart,
       color: 'border-l-blue-500',
       href: '/gateways/procurement',
-      activeGroups: sampleGroups.procurement,
       requiresKyc: true,
-      requiresPoints: true
+      requiresPoints: true,
+      tier: 'premium'
     },
     {
+      id: 'marketing',
       title: language === 'ar' ? 'التسويق التعاوني' : 'Cooperative Marketing',
       description: language === 'ar' ? 'شراكات التسويق الاستراتيجي والحملات المشتركة' : 'Strategic marketing partnerships and joint campaigns',
       icon: TrendingUp,
       color: 'border-l-green-500',
       href: '/gateways/marketing',
-      activeGroups: sampleGroups.marketing,
       requiresKyc: true,
-      requiresPoints: true
+      requiresPoints: true,
+      tier: 'basic'
     },
     {
+      id: 'company-formation',
       title: language === 'ar' ? 'تأسيس الشركات' : 'Company Formation',
       description: language === 'ar' ? 'دخول السوق واختيار الولاية القضائية المناسبة' : 'Market entry and jurisdiction selection',
       icon: Building2,
       color: 'border-l-purple-500',
       href: '/gateways/company-formation',
-      activeGroups: sampleGroups.companyFormation,
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'enterprise'
     },
     {
+      id: 'investment',
       title: language === 'ar' ? 'مجموعات الاستثمار' : 'Investment Groups',
       description: language === 'ar' ? 'الاستثمار التعاوني وإدارة الشركات المشتركة' : 'Collaborative investment and joint company management',
       icon: DollarSign,
       color: 'border-l-emerald-500',
       href: '/gateways/investment',
-      activeGroups: [],
       requiresKyc: true,
-      requiresPoints: true
+      requiresPoints: true,
+      tier: 'premium'
     },
     {
+      id: 'suppliers',
       title: language === 'ar' ? 'الموردون' : 'Suppliers',
       description: language === 'ar' ? 'البحث عن الموردين والعناية الواجبة' : 'Supplier sourcing and due diligence',
       icon: Factory,
       color: 'border-l-red-500',
       href: '/gateways/suppliers',
-      activeGroups: [],
       requiresKyc: true,
-      requiresPoints: true
+      requiresPoints: true,
+      tier: 'premium'
     },
     {
+      id: 'freelancer',
       title: language === 'ar' ? 'المستقلون' : 'Freelancers',
       description: language === 'ar' ? 'اقتصاد العمل الحر والاستشاري' : 'Freelance and advisory economy',
       icon: UserCheck,
       color: 'border-l-orange-500',
       href: '/gateways/freelancer',
-      activeGroups: [],
       requiresKyc: false,
       requiresPoints: false,
-      requiresMcp: true
+      requiresMcp: true,
+      tier: 'basic'
     },
     {
+      id: 'freelancer-groups',
       title: language === 'ar' ? 'مجموعات المستقلين' : 'Freelancer Groups',
       description: language === 'ar' ? 'مجموعات تعاونية للمستقلين والخبراء' : 'Collaborative groups for freelancers and experts',
       icon: Users,
       color: 'border-l-cyan-500',
       href: '/gateways/freelancer-groups',
-      activeGroups: [],
       requiresKyc: false,
       requiresPoints: false,
-      requiresMcp: true
+      requiresMcp: true,
+      tier: 'basic'
     },
     {
+      id: 'service-providers',
       title: language === 'ar' ? 'مقدمو الخدمات' : 'Service Providers',
       description: language === 'ar' ? 'منصة لمقدمي الخدمات المهنية' : 'Platform for professional service providers',
       icon: Package,
       color: 'border-l-indigo-500',
       href: '/gateways/service-providers',
-      activeGroups: [],
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'free'
     },
     {
+      id: 'product-listings',
       title: language === 'ar' ? 'قوائم المنتجات' : 'Product Listings',
       description: language === 'ar' ? 'عرض وتداول المنتجات والخدمات' : 'Product and service listings and trading',
       icon: List,
       color: 'border-l-pink-500',
       href: '/gateways/product-listings',
-      activeGroups: [],
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'free'
     },
     {
+      id: 'arbitration',
       title: language === 'ar' ? 'التحكيم والتوثيق' : 'Arbitration & Documentation',
       description: language === 'ar' ? 'حل النزاعات والأدلة الرقمية - ORDA' : 'Conflict resolution and digital evidence - ORDA',
       icon: Scale,
       color: 'border-l-amber-500',
       href: '/gateways/arbitration',
-      activeGroups: [],
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'free'
     },
     {
+      id: 'arbitration-requests',
       title: language === 'ar' ? 'طلبات التحكيم' : 'Arbitration Requests',
       description: language === 'ar' ? 'تقديم طلبات التحكيم وإدارة القضايا' : 'Submit arbitration requests and manage cases',
       icon: FileText,
       color: 'border-l-violet-500',
       href: '/gateways/arbitration-requests',
-      activeGroups: [],
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'free'
     },
     {
+      id: 'smart-negotiation',
       title: language === 'ar' ? 'حلول التفاوض الذكية' : 'Smart Negotiation Solutions',
       description: language === 'ar' ? 'أدوات التفاوض الذكية والوساطة' : 'Smart negotiation tools and mediation',
       icon: MessageSquare,
       color: 'border-l-teal-500',
       href: '/gateways/smart-negotiation',
-      activeGroups: [],
       requiresKyc: false,
-      requiresPoints: false
+      requiresPoints: false,
+      tier: 'free'
     }
   ];
 
@@ -297,7 +310,11 @@ const ComprehensiveHomePage = () => {
 
           <div className="space-y-16">
             {gateways.map((gateway, index) => (
-              <GatewayPortal key={index} {...gateway} />
+              <GatewayPortal 
+                key={index} 
+                config={gateway}
+                activeGroups={sampleGroups[gateway.id] || []}
+              />
             ))}
           </div>
         </div>
