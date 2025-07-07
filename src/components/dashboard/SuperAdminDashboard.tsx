@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { SuperAdminDashboard, ModuleDashboard, UserRole, ActivityLog } from '@/types/dashboard';
+import type { SuperAdminDashboard as SuperAdminDashboardType, ModuleDashboard, UserRole, ActivityLog } from '@/types/dashboard';
 import { 
   Users, 
   Settings, 
@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 interface SuperAdminDashboardProps {
-  dashboard: SuperAdminDashboard;
+  dashboard: SuperAdminDashboardType;
   onCreateModule: (moduleData: any) => void;
   onEditModule: (moduleId: string, moduleData: any) => void;
   onDeleteModule: (moduleId: string) => void;

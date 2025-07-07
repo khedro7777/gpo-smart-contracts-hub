@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { 
   SuperAdminDashboard, 
@@ -264,6 +263,115 @@ export class DashboardService {
     }
   }
 
+  // Freelancer Dashboard Methods
+  static async getFreelancerDashboard(freelancerId: string): Promise<any | null> {
+    try {
+      const freelancerData = await this.getFreelancerData(freelancerId);
+      if (!freelancerData) return null;
+
+      const dashboard = {
+        freelancerId,
+        profile: freelancerData.profile,
+        stats: await this.getFreelancerStats(freelancerId),
+        projects: await this.getFreelancerProjects(freelancerId),
+        earnings: await this.getFreelancerEarnings(freelancerId),
+        opportunities: await this.getAvailableOpportunities(freelancerId),
+        reviews: await this.getFreelancerReviews(freelancerId),
+        notifications: await this.getFreelancerNotifications(freelancerId)
+      };
+
+      return dashboard;
+    } catch (error) {
+      console.error('Error getting freelancer dashboard:', error);
+      return null;
+    }
+  }
+
+  static async updateFreelancerProject(freelancerId: string, projectId: string, updates: any): Promise<boolean> {
+    try {
+      // التحقق من أن المستقل يملك هذا المشروع
+      const hasAccess = await this.verifyFreelancerProjectAccess(freelancerId, projectId);
+      if (!hasAccess) return false;
+
+      // تحديث بيانات المشروع
+      await this.updateProjectData(projectId, updates);
+      
+      // إرسال إشعار للعميل إذا كان التحديث يتعلق بالتقدم
+      if (updates.progress) {
+        await this.notifyClientOfProgress(projectId, updates.progress);
+      }
+
+      // تسجيل النشاط
+      await this.logActivity({
+        userId: freelancerId,
+        userName: await this.getUserName(freelancerId),
+        action: `Updated project progress: ${updates.progress || 'various fields'}%`,
+        module: 'freelancer',
+        details: { projectId, updates }
+      });
+
+      return true;
+    } catch (error) {
+      console.error('Error updating freelancer project:', error);
+      return false;
+    }
+  }
+
+  static async applyToProject(freelancerId: string, projectId: string, proposal: any): Promise<boolean> {
+    try {
+      // التحقق من أن المستقل يستطيع التقديم
+      const canApply = await this.canFreelancerApply(freelancerId, projectId);
+      if (!canApply) return false;
+
+      // إنشاء طلب التقديم
+      const applicationId = crypto.randomUUID();
+      const application = {
+        id: applicationId,
+        freelancerId,
+        projectId,
+        proposal,
+        status: 'pending',
+        submittedAt: new Date().toISOString(),
+        ...proposal
+      };
+
+      // حفظ الطلب
+      await this.saveProjectApplication(application);
+
+      // إشعار العميل
+      await this.notifyClientOfApplication(projectId, freelancerId);
+
+      // تسجيل النشاط
+      await this.logActivity({
+        userId: freelancerId,
+        userName: await this.getUserName(freelancerId),
+        action: 'Applied to new project',
+        module: 'freelancer',
+        details: { projectId, applicationId }
+      });
+
+      return true;
+    } catch (error) {
+      console.error('Error applying to project:', error);
+      return false;
+    }
+  }
+
+  static async getFreelancerOpportunities(freelancerId: string): Promise<any[]> {
+    try {
+      const freelancerProfile = await this.getFreelancerProfile(freelancerId);
+      const opportunities = await this.getMatchingOpportunities(freelancerProfile.skills, freelancerProfile.category);
+      
+      return opportunities.filter(opp => 
+        !opp.appliedFreelancers?.includes(freelancerId) && 
+        opp.status === 'open'
+      );
+    } catch (error) {
+      console.error('Error getting freelancer opportunities:', error);
+      return [];
+    }
+  }
+
   // Helper methods
   private static async checkSuperAdminPermission(userId: string): Promise<boolean> {
     // Implementation to check if user has Super Admin role
@@ -424,5 +532,108 @@ export class DashboardService {
   private static async getGroupManagerById(userId: string, groupId: string): Promise<GroupManagerDashboard | null> {
     // Implementation to get Group Manager dashboard by ID
     return null; // Placeholder
+  }
+
+  // Helper methods for freelancer functionality
+  private static async getFreelancerData(freelancerId: string): Promise<any> {
+    // Implementation to get freelancer data
+    return {
+      profile: {
+        id: freelancerId,
+        name: 'John Doe',
+        avatar: '/api/placeholder/40/40',
+        skills: ['React', 'Node.js', 'Design'],
+        category: 'web-development',
+        rating: 4.8,
+        completedProjects: 25
+      }
+    };
+  }
+
+  private static async getFreelancerStats(freelancerId: string): Promise<any> {
+    // Implementation to get freelancer statistics
+    return {
+      totalProjects: 15,
+      activeProjects: 4,
+      completedProjects: 11,
+      totalEarnings: 25000,
+      averageRating: 4.8,
+      completionRate: 95,
+      responseTime: '2h',
+      clientSatisfaction: 96
+    };
+  }
+
+  private static async getFreelancerProjects(freelancerId: string): Promise<any[]> {
+    // Implementation to get freelancer projects
+    return [];
+  }
+
+  private static async getFreelancerEarnings(freelancerId: string): Promise<any> {
+    // Implementation to get freelancer earnings
+    return {
+      thisMonth: 3500,
+      lastMonth: 4200,
+      total: 25000,
+      pending: 1500
+    };
+  }
+
+  private static async getAvailableOpportunities(freelancerId: string): Promise<any[]> {
+    // Implementation to get available opportunities
+    return [];
+  }
+
+  private static async getFreelancerReviews(freelancerId: string): Promise<any[]> {
+    // Implementation to get freelancer reviews
+    return [];
+  }
+
+  private static async getFreelancerNotifications(freelancerId: string): Promise<any[]> {
+    // Implementation to get freelancer notifications
+    return [];
+  }
+
+  private static async verifyFreelancerProjectAccess(freelancerId: string, projectId: string): Promise<boolean> {
+    // Implementation to verify project access
+    return true;
+  }
+
+  private static async updateProjectData(projectId: string, updates: any): Promise<void> {
+    // Implementation to update project data
+    console.log(`Updating project ${projectId} with:`, updates);
+  }
+
+  private static async notifyClientOfProgress(projectId: string, progress: number): Promise<void> {
+    // Implementation to notify client of progress
+    console.log(`Notifying client of ${progress}% progress on project ${projectId}`);
+  }
+
+  private static async canFreelancerApply(freelancerId: string, projectId: string): Promise<boolean> {
+    // Implementation to check if freelancer can apply
+    return true;
+  }
+
+  private static async saveProjectApplication(application: any): Promise<void> {
+    // Implementation to save project application
+    console.log('Saving application:', application);
+  }
+
+  private static async notifyClientOfApplication(projectId: string, freelancerId: string): Promise<void> {
+    // Implementation to notify client of new application
+    console.log(`Notifying client of new application from freelancer ${freelancerId} for project ${projectId}`);
+  }
+
+  private static async getFreelancerProfile(freelancerId: string): Promise<any> {
+    // Implementation to get freelancer profile
+    return {
+      skills: ['React', 'Node.js'],
+      category: 'web-development'
+    };
+  }
+
+  private static async getMatchingOpportunities(skills: string[], category: string): Promise<any[]> {
+    // Implementation to get matching opportunities based on skills and category
+    return [];
   }
 }
