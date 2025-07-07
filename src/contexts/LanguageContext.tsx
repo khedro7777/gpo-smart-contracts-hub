@@ -1,43 +1,44 @@
 
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type LanguageContextType = {
-  language: 'ar' | 'en';
-  direction: 'rtl' | 'ltr';
-  toggleLanguage: () => void;
-  setLanguage: (lang: 'ar' | 'en') => void;
-};
+type Language = 'ar' | 'en';
 
-const LanguageContext = createContext<LanguageContextType>({
-  language: 'en',
-  direction: 'ltr',
-  toggleLanguage: () => {},
-  setLanguage: () => {},
-});
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  direction: 'ltr' | 'rtl';
+}
 
-export const useLanguage = () => useContext(LanguageContext);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<'ar' | 'en'>('en');
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('en');
+  
   const direction = language === 'ar' ? 'rtl' : 'ltr';
 
-  const toggleLanguage = () => {
-    setLanguageState((prevLang) => (prevLang === 'ar' ? 'en' : 'ar'));
+  const value = {
+    language,
+    setLanguage,
+    direction,
   };
-
-  const setLanguage = (lang: 'ar' | 'en') => {
-    setLanguageState(lang);
-  };
-
-  useEffect(() => {
-    // Apply direction and language to HTML element
-    document.documentElement.setAttribute('dir', direction);
-    document.documentElement.setAttribute('lang', language);
-  }, [direction, language]);
 
   return (
-    <LanguageContext.Provider value={{ language, direction, toggleLanguage, setLanguage }}>
-      {children}
+    <LanguageContext.Provider value={value}>
+      <div dir={direction} className={language === 'ar' ? 'font-arabic' : ''}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 };
