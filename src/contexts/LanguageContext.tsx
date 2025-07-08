@@ -18,9 +18,9 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
   
-  const direction = language === 'ar' ? 'rtl' : 'ltr';
+  const direction: 'ltr' | 'rtl' = language === 'ar' ? 'rtl' : 'ltr';
 
-  const value = {
+  const value: LanguageContextType = {
     language,
     setLanguage,
     direction,
